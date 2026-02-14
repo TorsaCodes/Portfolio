@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #1a0000 0%, #000000 70%);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* subtle fade-in */
+body {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.enter-btn {
+  padding: 18px 50px;
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(45deg, #8b0000, #ff0000);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+/* glow animation */
+.enter-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+  transform: rotate(0deg);
+  animation: rotateGlow 6s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.enter-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+}
+
+.enter-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.tagline {
+  position: absolute;
+  bottom: 40px;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+</style>
+
+<script>
+function go() {
+  window.location.href = "https://xhamster.com/";
+}
+</script>
+</head>
+
+<body>
+
+<button class="enter-btn" onclick="go()">
+  <span>Enter The Experience</span>
+</button>
+
+<div class="tagline">
+  18+ Only • Premium Access
+</div>
+
+</body>
+</html>
