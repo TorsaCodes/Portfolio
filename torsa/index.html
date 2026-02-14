@@ -353,108 +353,190 @@
         .btn-subscribe:hover { box-shadow: 0 6px 20px rgba(0, 149, 246, 0.6); transform: translateY(-1px); }
 
         /* --- Membership Tiers Section --- */
-        .tiers-section {
-            padding: 40px 0;
-        }
+     .tiers-section {
+    padding: 40px 0;
+}
 
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 12px;
-        }
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 12px;
+}
 
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+.tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-        .tier-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.tier-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        .tier-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+/* Hover */
+.tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 
-        .tier-card.diamond {
-            border: 1px solid #b38728;
-            background: linear-gradient(180deg, #1a1a1a 0%, #241e05 100%);
-        }
-        
-        .tier-card.diamond::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: var(--gold-gradient);
-        }
+/* ========================= */
+/* SILVER */
+/* ========================= */
 
-        .tier-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-        }
+.tier-card.silver {
+    border: 1px solid #c0c0c0;
+    background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+}
 
-        .tier-price {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        .tier-price span { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
+.tier-card.silver::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #eeeeee, #bfbfbf, #ffffff);
+}
 
-        .tier-features {
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
+.tier-card.silver .tier-features li::before {
+    color: #c0c0c0;
+}
 
-        .tier-features li {
-            margin-bottom: 10px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .tier-features li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-size: 1.2rem;
-        }
-        .tier-card.diamond .tier-features li::before { color: #fcf6ba; }
+/* ========================= */
+/* GOLD */
+/* ========================= */
 
-        .tier-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
+.tier-card.gold {
+    border: 1px solid #d4af37;
+    background: linear-gradient(180deg, #1a1a1a 0%, #2b2208 100%);
+}
 
-        .tier-btn.silver { background: #333; color: #fff; }
-        .tier-btn.gold { background: #444; color: #fff; }
-        .tier-btn.diamond { 
-            background: var(--gold-gradient); 
-            color: #000; 
-            box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
-        }
-        
-        .tier-btn:hover { opacity: 0.9; }
+.tier-card.gold::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f7e27c, #d4af37, #fff4b0);
+}
+
+.tier-card.gold .tier-features li::before {
+    color: #d4af37;
+}
+
+/* ========================= */
+/* DIAMOND (Shiny Effect) */
+/* ========================= */
+
+.tier-card.diamond {
+    border: 1px solid #8fd3ff;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0f1a22 100%);
+    box-shadow: 0 0 20px rgba(143, 211, 255, 0.25);
+}
+
+.tier-card.diamond::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #b9f2ff, transparent);
+    animation: diamondShine 3s infinite linear;
+}
+
+@keyframes diamondShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.tier-card.diamond .tier-features li::before {
+    color: #8fd3ff;
+}
+
+/* ========================= */
+
+.tier-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.tier-price {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.tier-price span {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.tier-features {
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.tier-features li {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tier-features li::before {
+    content: "•";
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+
+.tier-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.tier-btn.silver {
+    background: linear-gradient(90deg, #bfbfbf, #e6e6e6);
+    color: #000;
+}
+
+.tier-btn.gold {
+    background: linear-gradient(90deg, #d4af37, #f7e27c);
+    color: #000;
+}
+
+.tier-btn.diamond {
+    background: linear-gradient(90deg, #b9f2ff, #8fd3ff);
+    color: #000;
+    box-shadow: 0 4px 20px rgba(143, 211, 255, 0.4);
+}
+
+.tier-btn:hover {
+    opacity: 0.9;
+}
 
         /* --- Locked Posts Grid --- */
         .grid-section { padding: 40px 0; }
