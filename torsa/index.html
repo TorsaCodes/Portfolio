@@ -1034,20 +1034,33 @@ counters.forEach(counter => {
     const updateCount = () => {
         count += increment;
 
-        if (count < target) {
-            if (target === 257000) {
-                counter.innerText = Math.floor(count).toLocaleString();
-            } else {
-                counter.innerText = Math.floor(count);
-            }
-            requestAnimationFrame(updateCount);
-        } else {
-            if (target === 257000) {
-                counter.innerText = "257K";
-            } else {
-                counter.innerText = target;
-            }
-        }
+   if (count < target) {
+
+    if (counter.classList.contains("revenue-highlight")) {
+        counter.innerText = "$" + Math.floor(count).toLocaleString();
+    } 
+    else if (target === 257000) {
+        counter.innerText = Math.floor(count).toLocaleString();
+    } 
+    else {
+        counter.innerText = Math.floor(count);
+    }
+
+    requestAnimationFrame(updateCount);
+
+} else {
+
+    if (counter.classList.contains("revenue-highlight")) {
+        counter.innerText = "$" + target.toLocaleString();
+    } 
+    else if (target === 257000) {
+        counter.innerText = "257K";
+    } 
+    else {
+        counter.innerText = target;
+    }
+
+}
     };
 
     updateCount();
