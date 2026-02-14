@@ -763,7 +763,6 @@
        <div class="sticky-avatar">
     <img src="images/img1.jpg" alt="Torsa Farooqi">
 </div>
-        </div>
         <a href="https://form.typeform.com/to/IhDQzITL" class="btn-sticky-sub">
             Subscribe
         </a>
@@ -1094,15 +1093,14 @@ counters.forEach(counter => {
             const toast = document.getElementById('activityToast');
             const toastText = document.getElementById('activityText');
             const activities = [
-                "Alex just subscribed",
-                "Jordan unlocked a post",
-                "Taylor sent a tip",
-                "Casey liked Torsa’s photo",
-                "Morgan joined Gold Tier",
-                "Riley viewed Torsa’s story"
-                "Jamie just subscribed",
-
-            ];
+    "Alex just subscribed",
+    "Jordan unlocked a post",
+    "Taylor sent a tip",
+    "Casey liked Torsa’s photo",
+    "Morgan joined Gold Tier",
+    "Riley viewed Torsa’s story",
+    "Jamie just subscribed"
+];
 
             const showNotification = () => {
                 const randomActivity = activities[Math.floor(Math.random() * activities.length)];
