@@ -342,19 +342,21 @@
             border: none;
         }
 
-        .btn-instagram {
-            background-color: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-        }
-        .btn-instagram:hover { background-color: rgba(255, 255, 255, 0.05); }
+        .btn-instagram,
+.btn-msg {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    transition: all 0.3s ease;
+}
 
-        .btn-msg {
-            background-color: #2a2a2a;
-            color: white;
-            border: 1px solid #333;
-        }
-        .btn-msg:hover { background-color: #333; }
+.btn-instagram:hover,
+.btn-msg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
 
         .btn-subscribe {
             background: var(--accent-gradient);
@@ -862,6 +864,7 @@
                     <span class="move-tag">The Lazy Dog</span>
                     <span class="move-tag">The Spider</span>
                     <span class="move-tag">The Pillow Lift</span>
+                    <span class="move-tag">And Many More</span>
                 </div>
             </section>
 
