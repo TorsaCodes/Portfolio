@@ -767,8 +767,7 @@
             .btn { width: 100%; max-width: 300px; }
             .activity-toast { left: 10px; right: 10px; bottom: 10px; max-width: none; }
         }
-    </style>
-    /* ONLINE STATUS DESIGN */
+        /* ONLINE STATUS DESIGN */
 .online-status {
     display: flex;
     justify-content: center;
@@ -796,6 +795,7 @@
     background: #555;
     box-shadow: none;
 }
+    </style>
 </head>
 <body>
 
@@ -1063,13 +1063,7 @@ Pure lust in luxury form. 🔥
             
             // --- 1. Sticky Header Shrink Effect ---
             const header = document.getElementById('stickyHeader');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('shrink');
-                } else {
-                    header.classList.remove('shrink');
-                }
-                // ONLINE STATUS TOGGLE
+            // ONLINE STATUS TOGGLE
 const statusElement = document.getElementById("onlineStatus");
 
 function toggleStatus() {
@@ -1086,6 +1080,13 @@ function toggleStatus() {
 
 toggleStatus();
 setInterval(toggleStatus, 20000);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shrink');
+                } else {
+                    header.classList.remove('shrink');
+                }
+     
             });
 
             // --- 2. Animated Counters (All Stats) ---
