@@ -768,6 +768,34 @@
             .activity-toast { left: 10px; right: 10px; bottom: 10px; max-width: none; }
         }
     </style>
+    /* ONLINE STATUS DESIGN */
+.online-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    font-weight: 500;
+    color: #00c853;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00c853;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00c853;
+}
+
+.online-status.offline {
+    color: #888;
+}
+
+.online-status.offline .status-dot {
+    background: #555;
+    box-shadow: none;
+}
 </head>
 <body>
 
@@ -796,6 +824,11 @@
                     </svg>
                 </div>
             </div>
+            <!-- Online Status -->
+<div class="online-status" id="onlineStatus">
+    <span class="status-dot"></span>
+    <span class="status-text">Online Now</span>
+</div>
 
             <!-- Exclusive Content Stats -->
             <div class="stats-row delay-1 animate-in">
@@ -1036,6 +1069,23 @@ Pure lust in luxury form. 🔥
                 } else {
                     header.classList.remove('shrink');
                 }
+                // ONLINE STATUS TOGGLE
+const statusElement = document.getElementById("onlineStatus");
+
+function toggleStatus() {
+    const isOnline = Math.random() > 0.3;
+
+    if (isOnline) {
+        statusElement.classList.remove("offline");
+        statusElement.querySelector(".status-text").innerText = "Online Now";
+    } else {
+        statusElement.classList.add("offline");
+        statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
+    }
+}
+
+toggleStatus();
+setInterval(toggleStatus, 20000);
             });
 
             // --- 2. Animated Counters (All Stats) ---
