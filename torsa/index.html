@@ -795,6 +795,19 @@
     background: #555;
     box-shadow: none;
 }
+        .viewer-count {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #aaa;
+    text-align: center;
+}
+        .countdown {
+    margin: 10px 0 20px 0;
+    font-size: 14px;
+    color: #ff4d4d;
+    font-weight: 600;
+    text-align: center;
+}
     </style>
 </head>
 <body>
@@ -829,7 +842,9 @@
     <span class="status-dot"></span>
     <span class="status-text">Online Now</span>
 </div>
-
+<div class="viewer-count">
+    👀 <span id="viewerNumber">128</span> people viewing right now
+</div>
             <!-- Exclusive Content Stats -->
             <div class="stats-row delay-1 animate-in">
                 <div class="stat-item">
@@ -955,6 +970,9 @@ Pure lust in luxury form. 🔥
 
                 <!-- Diamond -->
                 <div class="tier-card diamond">
+                    <div class="countdown">
+    🔥 Price increases in: <span id="timer">08:00:00</span>
+</div>
                     <div class="tier-name">Diamond</div>
                     <div class="tier-price">$300 <span>/ month</span></div>
                     <ul class="tier-features">
@@ -1227,6 +1245,39 @@ counters.forEach(counter => {
 
             setTimeout(showNotification, 2000); 
             setInterval(showNotification, 10000); 
+            // LIVE VIEWER COUNTER
+const viewerNumber = document.getElementById("viewerNumber");
+
+function updateViewers() {
+    const random = Math.floor(Math.random() * 70) + 90; 
+    viewerNumber.innerText = random;
+}
+
+updateViewers();
+setInterval(updateViewers, 15000);
+            // COUNTDOWN TIMER
+let timeLeft = 8 * 60 * 60; // 8 hours
+const timer = document.getElementById("timer");
+if (timer) {
+
+function updateTimer() {
+    const hours = Math.floor(timeLeft / 3600);
+    const minutes = Math.floor((timeLeft % 3600) / 60);
+    const seconds = timeLeft % 60;
+
+    timer.innerText =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
+    if (timeLeft > 0) {
+        timeLeft--;
+    }
+}
+
+updateTimer();
+setInterval(updateTimer, 1000);
+    }
         });
     </script>
 </body>
