@@ -875,9 +875,9 @@
 Salpingectomy done. No fear. No limits. Just heat and hunger.
 
 I crave attention. I crave control. I crave being desired.
-Tease me and I’ll take over.
+Tease me and I'll take over.
 
-I’m built for pleasure. Wired for temptation.
+I'm built for pleasure. Wired for temptation.
 Always turned on. Always pushing boundaries.
 
 Not innocent. Not subtle.
@@ -946,6 +946,9 @@ Pure lust in luxury form. 🔥
             <div class="tiers-grid">
                 <!-- Silver -->
                 <div class="tier-card silver">
+                    <div class="countdown">
+                        🔥 Price increases in: <span id="timerSilver">--:--:--</span>
+                    </div>
                     <div class="tier-name">Silver</div>
                     <div class="tier-price">$60 <span>/ month</span></div>
                     <ul class="tier-features">
@@ -958,6 +961,9 @@ Pure lust in luxury form. 🔥
 
                 <!-- Gold -->
                 <div class="tier-card gold">
+                    <div class="countdown">
+                        🔥 Price increases in: <span id="timerGold">--:--:--</span>
+                    </div>
                     <div class="tier-name">Gold</div>
                     <div class="tier-price">$180 <span>/ month</span></div>
                     <ul class="tier-features">
@@ -971,8 +977,8 @@ Pure lust in luxury form. 🔥
                 <!-- Diamond -->
                 <div class="tier-card diamond">
                     <div class="countdown">
-    🔥 Price increases in: <span id="timer">08:00:00</span>
-</div>
+                        🔥 Price increases in: <span id="timerDiamond">--:--:--</span>
+                    </div>
                     <div class="tier-name">Diamond</div>
                     <div class="tier-price">$300 <span>/ month</span></div>
                     <ul class="tier-features">
@@ -1081,73 +1087,70 @@ Pure lust in luxury form. 🔥
             
             // --- 1. Sticky Header Shrink Effect ---
             const header = document.getElementById('stickyHeader');
+            
             // ONLINE STATUS TOGGLE
-const statusElement = document.getElementById("onlineStatus");
+            const statusElement = document.getElementById("onlineStatus");
 
-function toggleStatus() {
-    const isOnline = Math.random() > 0.3;
+            function toggleStatus() {
+                const isOnline = Math.random() > 0.3;
 
-    if (isOnline) {
-        statusElement.classList.remove("offline");
-        statusElement.querySelector(".status-text").innerText = "Online Now";
-    } else {
-        statusElement.classList.add("offline");
-        statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
-    }
-}
+                if (isOnline) {
+                    statusElement.classList.remove("offline");
+                    statusElement.querySelector(".status-text").innerText = "Online Now";
+                } else {
+                    statusElement.classList.add("offline");
+                    statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
+                }
+            }
 
-toggleStatus();
-setInterval(toggleStatus, 20000);
+            toggleStatus();
+            setInterval(toggleStatus, 20000);
+            
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
                     header.classList.add('shrink');
                 } else {
                     header.classList.remove('shrink');
                 }
-     
             });
 
             // --- 2. Animated Counters (All Stats) ---
-           const counters = document.querySelectorAll('.stat-number');
-counters.forEach(counter => {
-    const target = +counter.getAttribute('data-target');
-    let count = 0;
-    const increment = target / 120;
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const increment = target / 120;
 
-    const updateCount = () => {
-        count += increment;
+                const updateCount = () => {
+                    count += increment;
 
-   if (count < target) {
+                    if (count < target) {
+                        if (counter.classList.contains("revenue-highlight")) {
+                            counter.innerText = "$" + Math.floor(count).toLocaleString();
+                        } 
+                        else if (target === 257000) {
+                            counter.innerText = Math.floor(count).toLocaleString();
+                        } 
+                        else {
+                            counter.innerText = Math.floor(count);
+                        }
 
-    if (counter.classList.contains("revenue-highlight")) {
-        counter.innerText = "$" + Math.floor(count).toLocaleString();
-    } 
-    else if (target === 257000) {
-        counter.innerText = Math.floor(count).toLocaleString();
-    } 
-    else {
-        counter.innerText = Math.floor(count);
-    }
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        if (counter.classList.contains("revenue-highlight")) {
+                            counter.innerText = "$" + target.toLocaleString();
+                        } 
+                        else if (target === 257000) {
+                            counter.innerText = "257K";
+                        } 
+                        else {
+                            counter.innerText = target;
+                        }
+                    }
+                };
 
-    requestAnimationFrame(updateCount);
-
-} else {
-
-    if (counter.classList.contains("revenue-highlight")) {
-        counter.innerText = "$" + target.toLocaleString();
-    } 
-    else if (target === 257000) {
-        counter.innerText = "257K";
-    } 
-    else {
-        counter.innerText = target;
-    }
-
-}
-    };
-
-    updateCount();
-});
+                updateCount();
+            });
 
             // --- 3. Modal Logic ---
             const modal = document.getElementById('msgModal');
@@ -1184,17 +1187,16 @@ counters.forEach(counter => {
                 }
             });
 
-            // --- 4. Mastered Moves Scroll Animation (New) ---
+            // --- 4. Mastered Moves Scroll Animation ---
             const movesSection = document.getElementById('masteredMoves');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // Stop observing once visible
                         observer.unobserve(entry.target); 
                     }
                 });
-            }, { threshold: 0.2 }); // Trigger when 20% visible
+            }, { threshold: 0.2 });
 
             if(movesSection) {
                 observer.observe(movesSection);
@@ -1204,33 +1206,33 @@ counters.forEach(counter => {
             const toast = document.getElementById('activityToast');
             const toastText = document.getElementById('activityText');
             const activities = [
-    "Alex just subscribed",
-    "Jordan unlocked a post",
-    "Taylor sent a tip",
-    "Casey liked Torsa’s photo",
-    "Morgan joined Gold Tier",
-    "Riley viewed Torsa’s story",
-    "Jamie just subscribed",
-"Drew unlocked exclusive content",
-"Sam sent a generous tip",
-"Blake liked Torsa’s post",
-"Charlie upgraded to Platinum",
-"Avery joined VIP Access",
-"Quinn viewed Torsa’s story",
-"Parker unlocked premium content",
-"Reese just became a member",
-"Skyler sent a special tip",
-"Rowan liked Torsa’s latest upload",
-"Finley joined Silver Tier",
-"Hayden unlocked a private post",
-"Emerson just subscribed",
-"Kai reacted to Torsa’s story",
-"Logan joined Gold Tier",
-"Harper unlocked bonus content",
-"Arden sent a tip",
-"Sage liked Torsa’s photo",
-"Phoenix just upgraded to VIP"
-];
+                "Alex just subscribed",
+                "Jordan unlocked a post",
+                "Taylor sent a tip",
+                "Casey liked Torsa's photo",
+                "Morgan joined Gold Tier",
+                "Riley viewed Torsa's story",
+                "Jamie just subscribed",
+                "Drew unlocked exclusive content",
+                "Sam sent a generous tip",
+                "Blake liked Torsa's post",
+                "Charlie upgraded to Platinum",
+                "Avery joined VIP Access",
+                "Quinn viewed Torsa's story",
+                "Parker unlocked premium content",
+                "Reese just became a member",
+                "Skyler sent a special tip",
+                "Rowan liked Torsa's latest upload",
+                "Finley joined Silver Tier",
+                "Hayden unlocked a private post",
+                "Emerson just subscribed",
+                "Kai reacted to Torsa's story",
+                "Logan joined Gold Tier",
+                "Harper unlocked bonus content",
+                "Arden sent a tip",
+                "Sage liked Torsa's photo",
+                "Phoenix just upgraded to VIP"
+            ];
 
             const showNotification = () => {
                 const randomActivity = activities[Math.floor(Math.random() * activities.length)];
@@ -1245,41 +1247,62 @@ counters.forEach(counter => {
 
             setTimeout(showNotification, 2000); 
             setInterval(showNotification, 10000); 
+            
             // LIVE VIEWER COUNTER
-const viewerNumber = document.getElementById("viewerNumber");
+            const viewerNumber = document.getElementById("viewerNumber");
 
-function updateViewers() {
-    const random = Math.floor(Math.random() * 3001) + 4000; // 2000–3000
-    viewerNumber.innerText = random.toLocaleString();
-}
+            function updateViewers() {
+                const random = Math.floor(Math.random() * 3001) + 4000;
+                viewerNumber.innerText = random.toLocaleString();
+            }
 
-updateViewers();
-setInterval(updateViewers, 15000);
-            // COUNTDOWN TIMER
-let timeLeft = 8 * 60 * 60; // 8 hours
-const timer = document.getElementById("timer");
-if (timer) {
+            updateViewers();
+            setInterval(updateViewers, 15000);
 
-function updateTimer() {
-    const hours = Math.floor(timeLeft / 3600);
-    const minutes = Math.floor((timeLeft % 3600) / 60);
-    const seconds = timeLeft % 60;
+            // --- 6. REAL GLOBAL 8-HOUR PRICING CYCLE COUNTDOWN ---
+            const timerSilver = document.getElementById("timerSilver");
+            const timerGold = document.getElementById("timerGold");
+            const timerDiamond = document.getElementById("timerDiamond");
 
-    timer.innerText =
-        String(hours).padStart(2, "0") + ":" +
-        String(minutes).padStart(2, "0") + ":" +
-        String(seconds).padStart(2, "0");
+            function updateGlobalTimers() {
+                // Get current UTC time
+                const now = new Date();
+                const utcHours = now.getUTCHours();
+                const utcMinutes = now.getUTCMinutes();
+                const utcSeconds = now.getUTCSeconds();
 
-   if (timeLeft > 0) {
-    timeLeft--;
-} else {
-    timeLeft = 8 * 60 * 60; // Reset back to 8 hours
-}
-}
+                // Calculate current seconds since midnight UTC
+                const currentSecondsSinceMidnight = (utcHours * 3600) + (utcMinutes * 60) + utcSeconds;
 
-updateTimer();
-setInterval(updateTimer, 1000);
-    }
+                // 8-hour cycle = 28800 seconds
+                const cycleLength = 8 * 60 * 60;
+
+                // Find seconds elapsed in current cycle
+                const secondsInCurrentCycle = currentSecondsSinceMidnight % cycleLength;
+
+                // Calculate seconds remaining until next cycle
+                const secondsRemaining = cycleLength - secondsInCurrentCycle;
+
+                // Convert to hours, minutes, seconds
+                const hours = Math.floor(secondsRemaining / 3600);
+                const minutes = Math.floor((secondsRemaining % 3600) / 60);
+                const seconds = secondsRemaining % 60;
+
+                // Format as HH:MM:SS
+                const timeString = 
+                    String(hours).padStart(2, "0") + ":" +
+                    String(minutes).padStart(2, "0") + ":" +
+                    String(seconds).padStart(2, "0");
+
+                // Update all tier timers with the same global countdown
+                if (timerSilver) timerSilver.innerText = timeString;
+                if (timerGold) timerGold.innerText = timeString;
+                if (timerDiamond) timerDiamond.innerText = timeString;
+            }
+
+            // Initialize and update every second
+            updateGlobalTimers();
+            setInterval(updateGlobalTimers, 1000);
         });
     </script>
 </body>
