@@ -1249,8 +1249,8 @@ counters.forEach(counter => {
 const viewerNumber = document.getElementById("viewerNumber");
 
 function updateViewers() {
-    const random = Math.floor(Math.random() * 70) + 90; 
-    viewerNumber.innerText = random;
+    const random = Math.floor(Math.random() * 3001) + 4000; // 2000–3000
+    viewerNumber.innerText = random.toLocaleString();
 }
 
 updateViewers();
