@@ -249,10 +249,10 @@
 
     .revenue-highlight {
         background: linear-gradient(90deg, #f7e27c, #d4af37, #fff4b0);
-        background-clip: text;              
+        background-clip: text;              /* ADD THIS */
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        color: transparent;                 
+        color: transparent;                 /* ADD THIS */
         font-weight: 700;
     }
 
@@ -864,10 +864,10 @@
                     <span class="stat-label">Subscribers</span>
                 </div>
                  </div>
-<div class="stat-item">
-    <span id="revenueCounter" class="stat-number revenue-highlight">$0</span>
-    <span class="stat-label">Revenue Earned</span>
-</div>
+            <div class="stat-item">
+                <span id="revenueCounter" class="stat-number revenue-highlight">$0</span>
+                <span class="stat-label">Revenue Earned</span>
+            </div>
 
             <p class="bio delay-2 animate-in">
                 Full-time on cam at Kink.com and I love being watched.
@@ -934,7 +934,7 @@ Pure lust in luxury form. 🔥
                 <button class="btn btn-msg" id="openMsgBtn">
                     Send Private Message
                 </button>
-                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="btn btn-subscribe unlock-btn">
+                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="btn btn-subscribe">
                     Subscribe Now
                 </a>
             </div>
@@ -1082,314 +1082,368 @@ Pure lust in luxury form. 🔥
         </div>
     </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // --- Sticky Header Shrink ---
-    const header = document.getElementById('stickyHeader');
-    window.addEventListener('scroll', () => {
-        if(window.scrollY > 50) header.classList.add('shrink');
-        else header.classList.remove('shrink');
-    });
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
-    // Online status toggler
-    const statusElement = document.getElementById("onlineStatus");
-    function toggleStatus() {
-        const isOnline = Math.random() > 0.3;
-        statusElement.classList.toggle("offline", !isOnline);
-        statusElement.querySelector(".status-text").innerText = isOnline ? "Online Now" : "Last seen 2 mins ago";
-    }
-    toggleStatus();
-    setInterval(toggleStatus, 20000);
+            // --- 1. Sticky Header Shrink Effect ---
+            const header = document.getElementById('stickyHeader');
 
-    // Animated counters except revenue
-    document.querySelectorAll('.stat-number').forEach(counter => {
-        if(counter.id === "revenueCounter") return;
-        const target = +counter.getAttribute('data-target');
-        let count = 0;
-        const increment = target / 120;
-        function updateCount() {
-            count += increment;
-            if(count < target) {
-                if(target === 257000) counter.innerText = Math.floor(count).toLocaleString();
-                else counter.innerText = Math.floor(count);
-                requestAnimationFrame(updateCount);
-            } else {
-                if(target === 257000) counter.innerText = "257K";
-                else counter.innerText = target;
+            // ONLINE STATUS TOGGLE
+            const statusElement = document.getElementById("onlineStatus");
+
+            function toggleStatus() {
+                const isOnline = Math.random() > 0.3;
+
+                if (isOnline) {
+                    statusElement.classList.remove("offline");
+                    statusElement.querySelector(".status-text").innerText = "Online Now";
+                } else {
+                    statusElement.classList.add("offline");
+                    statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
+                }
             }
-        }
-        updateCount();
-    });
 
-    // Modal logic
-    const modal = document.getElementById('msgModal');
-    const openBtn = document.getElementById('openMsgBtn');
-    const closeBtn = document.getElementById('closeMsgBtn');
-    const sendBtn = document.getElementById('sendMsgBtn');
-    const textarea = modal.querySelector('.msg-textarea');
+            toggleStatus();
+            setInterval(toggleStatus, 20000);
 
-    openBtn.addEventListener('click', () => { modal.classList.add('active'); textarea.focus(); });
-    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
-    sendBtn.addEventListener('click', () => {
-        if(textarea.value.trim()){
-            const originalText = sendBtn.innerText;
-            sendBtn.innerText = "Sent!";
-            sendBtn.style.background = "#00c853";
-            setTimeout(() => {
-                modal.classList.remove('active');
-                textarea.value = "";
-                sendBtn.innerText = originalText;
-                sendBtn.style.background = "";
-            }, 800);
-        }
-    });
-
-    // Mastered moves scroll animation
-    const movesSection = document.getElementById('masteredMoves');
-    if(movesSection){
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting){
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shrink');
+                } else {
+                    header.classList.remove('shrink');
                 }
             });
-        }, {threshold:0.2});
-        observer.observe(movesSection);
-    }
 
-    // Fake activity feed
-    const toast = document.getElementById('activityToast');
-    const toastText = document.getElementById('activityText');
-    const activities = [
-        "Alex just subscribed",
-        "Jordan unlocked a post",
-        "Taylor sent a tip",
-        "Casey liked Torsa's photo",
-        "Morgan joined Gold Tier",
-        "Riley viewed Torsa's story",
-        "Jamie just subscribed",
-        "Drew unlocked exclusive content",
-        "Sam sent a generous tip",
-        "Blake liked Torsa's post",
-        "Charlie upgraded to Platinum",
-        "Avery joined VIP Access",
-        "Quinn viewed Torsa's story",
-        "Parker unlocked premium content",
-        "Reese just became a member",
-        "Skyler sent a special tip",
-        "Rowan liked Torsa's latest upload",
-        "Finley joined Silver Tier",
-        "Hayden unlocked a private post",
-        "Emerson just subscribed",
-        "Kai reacted to Torsa's story",
-        "Logan joined Gold Tier",
-        "Harper unlocked bonus content",
-        "Arden sent a tip",
-        "Sage liked Torsa's photo",
-        "Phoenix just upgraded to VIP"
-    ];
-    
-    function showNotification(){
-        const text = activities[Math.floor(Math.random()*activities.length)];
-        toastText.textContent = text;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 4000);
-    }
-    setTimeout(showNotification, 2000);
-    setInterval(showNotification, 10000);
+            // --- 2. Animated Counters (Except Revenue) ---
+            // Existing counters except revenue
+            const counters = document.querySelectorAll('.stat-number:not(#revenueCounter)');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const increment = target / 120;
 
-    // Viewer count updater
-    const viewerNumber = document.getElementById("viewerNumber");
-    function updateViewers(){
-        const val = Math.floor(Math.random() * 3001) + 4000;
-        viewerNumber.innerText = val.toLocaleString();
-    }
-    updateViewers();
-    setInterval(updateViewers, 15000);
+                const updateCount = () => {
+                    count += increment;
 
-    // Global 8-hour cycle timers (display only)
-    const timerSilver = document.getElementById("timerSilver");
-    const timerGold = document.getElementById("timerGold");
-    const timerDiamond = document.getElementById("timerDiamond");
-    function updateGlobalTimers(){
-        const now = new Date();
-        const utcSeconds = now.getUTCHours()*3600 + now.getUTCMinutes()*60 + now.getUTCSeconds();
-        const cycleLen = 8 * 3600;
-        const elapsed = utcSeconds % cycleLen;
-        const rem = cycleLen - elapsed;
-        const h = Math.floor(rem/3600);
-        const m = Math.floor((rem%3600)/60);
-        const s = rem % 60;
-        const str = [h,m,s].map(x=>x.toString().padStart(2,'0')).join(':');
-        if(timerSilver) timerSilver.innerText = str;
-        if(timerGold) timerGold.innerText = str;
-        if(timerDiamond) timerDiamond.innerText = str;
-    }
-    updateGlobalTimers();
-    setInterval(updateGlobalTimers, 1000);
+                    if (count < target) {
+                        if (target === 257000) {
+                            counter.innerText = Math.floor(count).toLocaleString();
+                        } else {
+                            counter.innerText = Math.floor(count);
+                        }
 
-    // ======= Advanced Lifetime Revenue Auto Increase System =======
-    const revenueKey = "lifetimeRevenue";
-    const lastCycleKey = "revenueLast8hCycle";
-    const lastMajorBoostKey = "revenueLastMajorBoost";
-    let revenueDisplay = document.getElementById("revenueCounter");
-    if(!revenueDisplay){
-        console.error("Revenue display element not found (#revenueCounter).");
-        return;
-    }
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        if (target === 257000) {
+                            counter.innerText = "257K";
+                        } else {
+                            counter.innerText = target;
+                        }
+                    }
+                };
 
-    const BASE_REVENUE = 78153590;
+                updateCount();
+            });
 
-    // Load revenue from localStorage or initialize once
-    let revenueRaw = localStorage.getItem(revenueKey);
-    let revenue;
-    if(revenueRaw === null){
-        revenue = BASE_REVENUE;
-        localStorage.setItem(revenueKey, revenue.toString());
-    } else {
-        revenue = parseInt(revenueRaw, 10);
-        if(isNaN(revenue) || revenue < BASE_REVENUE){
-            revenue = BASE_REVENUE;
-            localStorage.setItem(revenueKey, revenue.toString());
-        }
-    }
+            // --- 3. Modal Logic ---
+            const modal = document.getElementById('msgModal');
+            const openBtn = document.getElementById('openMsgBtn');
+            const closeBtn = document.getElementById('closeMsgBtn');
+            const sendBtn = document.getElementById('sendMsgBtn');
+            const textarea = document.querySelector('.msg-textarea');
 
-    // Variables to animate smoothly
-    let displayedRevenue = 0;
-    let animationFrameId = null;
+            openBtn.addEventListener('click', () => {
+                modal.classList.add('active');
+                textarea.focus();
+            });
 
-    function formatCurrency(num){
-        return "$"+num.toLocaleString("en-US");
-    }
+            const closeModal = () => {
+                modal.classList.remove('active');
+            };
 
-    // Instantly set displayed revenue
-    function setRevenueInstant(num){
-        revenueDisplay.textContent = formatCurrency(num);
-        displayedRevenue = num;
-    }
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
 
-    setRevenueInstant(revenue);
+            sendBtn.addEventListener('click', () => {
+                if(textarea.value.trim() !== "") {
+                    const originalText = sendBtn.innerText;
+                    sendBtn.innerText = "Sent!";
+                    sendBtn.style.background = "#00c853";
+                    setTimeout(() => {
+                        closeModal();
+                        textarea.value = "";
+                        sendBtn.innerText = originalText;
+                        sendBtn.style.background = "";
+                    }, 800);
+                }
+            });
 
-    // Animate revenue increasing smoothly upwards
-    function animateRevenueTo(newRev){
-        if(newRev <= displayedRevenue) return; // never decrease
-        const start = displayedRevenue;
-        const diff = newRev - start;
-        const duration = 1200; // ms
-        const startTime = performance.now();
-        if(animationFrameId) cancelAnimationFrame(animationFrameId);
-        function animate(time){
-            let elapsed = time - startTime;
-            let progress = Math.min(elapsed/duration, 1);
-            // easeOutCubic
-            progress = 1 - Math.pow(1-progress, 3);
-            let current = Math.floor(start + diff * progress);
-            revenueDisplay.textContent = formatCurrency(current);
-            displayedRevenue = current;
-            if(progress < 1){
-                animationFrameId = requestAnimationFrame(animate);
+            // --- 4. Mastered Moves Scroll Animation ---
+            const movesSection = document.getElementById('masteredMoves');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            if(movesSection) {
+                observer.observe(movesSection);
+            }
+
+            // --- 5. Fake Activity Feed ---
+            const toast = document.getElementById('activityToast');
+            const toastText = document.getElementById('activityText');
+            const activities = [
+                "Alex just subscribed",
+                "Jordan unlocked a post",
+                "Taylor sent a tip",
+                "Casey liked Torsa's photo",
+                "Morgan joined Gold Tier",
+                "Riley viewed Torsa's story",
+                "Jamie just subscribed",
+                "Drew unlocked exclusive content",
+                "Sam sent a generous tip",
+                "Blake liked Torsa's post",
+                "Charlie upgraded to Platinum",
+                "Avery joined VIP Access",
+                "Quinn viewed Torsa's story",
+                "Parker unlocked premium content",
+                "Reese just became a member",
+                "Skyler sent a special tip",
+                "Rowan liked Torsa's latest upload",
+                "Finley joined Silver Tier",
+                "Hayden unlocked a private post",
+                "Emerson just subscribed",
+                "Kai reacted to Torsa's story",
+                "Logan joined Gold Tier",
+                "Harper unlocked bonus content",
+                "Arden sent a tip",
+                "Sage liked Torsa's photo",
+                "Phoenix just upgraded to VIP"
+            ];
+
+            const showNotification = () => {
+                const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+                toastText.innerText = randomActivity;
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            };
+
+            setTimeout(showNotification, 2000); 
+            setInterval(showNotification, 10000); 
+            
+            // LIVE VIEWER COUNTER
+            const viewerNumber = document.getElementById("viewerNumber");
+
+            function updateViewers() {
+                const random = Math.floor(Math.random() * 3001) + 4000;
+                viewerNumber.innerText = random.toLocaleString();
+            }
+
+            updateViewers();
+            setInterval(updateViewers, 15000);
+
+            // --- 6. REAL GLOBAL 8-HOUR PRICING CYCLE COUNTDOWN ---
+            const timerSilver = document.getElementById("timerSilver");
+            const timerGold = document.getElementById("timerGold");
+            const timerDiamond = document.getElementById("timerDiamond");
+
+            // --- Advanced Lifetime Revenue Auto Increase System ---
+
+            const revenueKey = "lifetimeRevenue";
+            const lastMajorBoostKey = "lastMajorBoost";
+            // Configurable major boost interval hours: 24 or 48
+            const majorBoostIntervalHours = 24;
+
+            // Base revenue initial value
+            const baseRevenueInitial = 78153590;
+
+            const revenueDisplay = document.getElementById("revenueCounter");
+
+            // Load revenue from localStorage or init
+            let revenue = localStorage.getItem(revenueKey);
+            if (revenue === null) {
+                revenue = baseRevenueInitial;
+                localStorage.setItem(revenueKey, revenue.toString());
             } else {
-                animationFrameId = null;
-                // Ensure exact final number
-                revenueDisplay.textContent = formatCurrency(newRev);
-                displayedRevenue = newRev;
+                revenue = parseInt(revenue, 10);
+                if (isNaN(revenue) || revenue < baseRevenueInitial) {
+                    revenue = baseRevenueInitial;
+                    localStorage.setItem(revenueKey, revenue.toString());
+                }
             }
-        }
-        animationFrameId = requestAnimationFrame(animate);
-    }
 
-    // Update revenue value and save persistently
-    function updateRevenue(amount){
-        if(amount <= 0) return;
-        let newRev = revenue + amount;
-        if(newRev > revenue){
-            revenue = newRev;
-            localStorage.setItem(revenueKey, revenue.toString());
-            animateRevenueTo(revenue);
-        }
-    }
-
-    // Start background growth: every 2–4 mins, add 50–300
-    let bgTimerId = null;
-    function scheduleBackgroundGrowth(){
-        const interval = Math.random() * (240000 - 120000) + 120000; // ms
-        bgTimerId = setTimeout(() => {
-            const inc = Math.floor(Math.random() * (300 - 50 +1)) + 50;
-            updateRevenue(inc);
-            scheduleBackgroundGrowth();
-        }, interval);
-    }
-    scheduleBackgroundGrowth();
-
-    // Unlock button growth: all .unlock-btn buttons add 1000–4000 on click
-    const unlockButtons = document.querySelectorAll('.unlock-btn');
-    unlockButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const inc = Math.floor(Math.random() * (4000 - 1000 + 1)) + 1000;
-            updateRevenue(inc);
-        });
-    });
-
-    // Detect real global 8-hour UTC cycle reset
-    // On reset, add 8000–20000 once per cycle
-    let lastCycleTimestampRaw = localStorage.getItem(lastCycleKey);
-    let lastCycleTimestamp = lastCycleTimestampRaw ? parseInt(lastCycleTimestampRaw,10) : 0;
-
-    function check8HourCycleReset(){
-        const now = Date.now();
-        const nowDate = new Date(now);
-        // Get UTC timestamp of current 8h cycle start: floor hour to 8h interval
-        const utcHours = nowDate.getUTCHours();
-        const cycleHourStart = Math.floor(utcHours / 8) * 8;
-        const cycleStart = Date.UTC(
-            nowDate.getUTCFullYear(),
-            nowDate.getUTCMonth(),
-            nowDate.getUTCDate(),
-            cycleHourStart,0,0,0);
-        if(cycleStart > lastCycleTimestamp){
-            // New cycle started
-            const inc = Math.floor(Math.random()*(20000-8000+1)) + 8000;
-            updateRevenue(inc);
-            lastCycleTimestamp = cycleStart;
-            localStorage.setItem(lastCycleKey, lastCycleTimestamp.toString());
-        }
-    }
-    check8HourCycleReset();
-    setInterval(check8HourCycleReset, 30*1000); // check every 30 seconds
-
-    // 2–3 hour major boost
-    let lastMajorBoostRaw = localStorage.getItem(lastMajorBoostKey);
-    let lastMajorBoost = lastMajorBoostRaw ? parseInt(lastMajorBoostRaw,10) : 0;
-
-    function scheduleMajorBoost(){
-        // Random 2–3 hours interval in ms
-        const interval = Math.random() * (3*3600000 - 2*3600000) + 2*3600000;
-        setTimeout(() => {
-            const now = Date.now();
-            if(now - lastMajorBoost >= 2*3600000){ // ensure at least 2h passed
-                const inc = Math.floor(Math.random()*(40000-15000+1)) + 15000;
-                updateRevenue(inc);
-                lastMajorBoost = now;
+            // Load last major boost time or init to epoch 0 to force immediate boost on first run
+            let lastMajorBoost = localStorage.getItem(lastMajorBoostKey);
+            if (lastMajorBoost === null) {
+                lastMajorBoost = 0;
                 localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
+            } else {
+                lastMajorBoost = parseInt(lastMajorBoost, 10) || 0;
             }
-            scheduleMajorBoost();
-        }, interval);
-    }
 
-    // On load, check if immediate boost needed
-    const now = Date.now();
-    if(now - lastMajorBoost >= 2*3600000){
-        const inc = Math.floor(Math.random()*(40000-15000+1)) + 15000;
-        updateRevenue(inc);
-        lastMajorBoost = now;
-        localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
-    }
-    scheduleMajorBoost();
+            // Current displayed revenue number for animation purposes
+            let displayedRevenue = 0;
+            // To handle smooth animation of revenue number with requestAnimationFrame
+            let animationFrameId = null;
 
-});
-</script>
+            // Utility: format number with $ and commas
+            function formatRevenue(num) {
+                return "$" + num.toLocaleString();
+            }
 
+            // Set revenue displayed instantly (without animation)
+            function setRevenueDisplayInstant(num) {
+                revenueDisplay.innerText = formatRevenue(num);
+                displayedRevenue = num;
+            }
+
+            setRevenueDisplayInstant(revenue);
+
+            // Animate revenue from current displayedRevenue to newRevenue (upwards only)
+            function animateRevenueTo(newRevenue) {
+                if (newRevenue <= displayedRevenue) {
+                    // No decrease allowed, ignore
+                    return;
+                }
+                const start = displayedRevenue;
+                const change = newRevenue - start;
+                const animationDuration = 1000; // ms
+                const startTime = performance.now();
+
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+
+                function animate(time) {
+                    let elapsed = time - startTime;
+                    let progress = Math.min(elapsed / animationDuration, 1);
+                    // Ease out cubic
+                    progress = 1 - Math.pow(1 - progress, 3);
+                    let currentValue = Math.floor(start + change * progress);
+                    revenueDisplay.innerText = formatRevenue(currentValue);
+                    displayedRevenue = currentValue;
+
+                    if (progress < 1) {
+                        animationFrameId = requestAnimationFrame(animate);
+                    } else {
+                        animationFrameId = null;
+                        // Ensure final number is exact
+                        revenueDisplay.innerText = formatRevenue(newRevenue);
+                        displayedRevenue = newRevenue;
+                    }
+                }
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+
+            // Update revenue value and persist
+            // Always prevents revenue going down
+            function updateRevenue(amount) {
+                if (amount <= 0) return;
+                const newRevenue = revenue + amount;
+                if (newRevenue > revenue) {
+                    revenue = newRevenue;
+                    localStorage.setItem(revenueKey, revenue.toString());
+                    animateRevenueTo(revenue);
+                }
+            }
+
+            // Background Growth — every 30–90 seconds add random 200–1200
+            function scheduleBackgroundGrowth() {
+                // Random interval 30,000 to 90,000 ms
+                const interval = Math.random() * (90000 - 30000) + 30000;
+
+                setTimeout(() => {
+                    const amount = Math.floor(Math.random() * (1200 - 200 + 1)) + 200;
+                    updateRevenue(amount);
+                    scheduleBackgroundGrowth();
+                }, interval);
+            }
+            scheduleBackgroundGrowth();
+
+            // Unlock Click Growth — Listen for any .unlock-btn clicks add 3,000–10,000
+            function setupUnlockClickGrowth() {
+                // Buttons having class unlock-btn (added in membership tier buttons)
+                const unlockBtns = document.querySelectorAll('.unlock-btn');
+                unlockBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const amount = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+                        updateRevenue(amount);
+                    });
+                });
+            }
+            setupUnlockClickGrowth();
+
+            // 24 or 48 Hour Major Boost
+            function tryMajorBoost() {
+                const now = Date.now();
+                const intervalMs = majorBoostIntervalHours * 3600 * 1000;
+                if (now - lastMajorBoost >= intervalMs) {
+                    const amount = Math.floor(Math.random() * (300000 - 100000 + 1)) + 100000;
+                    updateRevenue(amount);
+                    lastMajorBoost = now;
+                    localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
+                }
+            }
+            tryMajorBoost();
+
+            // Check major boost every hour (to avoid blocking exact interval)
+            setInterval(tryMajorBoost, 3600 * 1000);
+
+            // 8-Hour Cycle Global Timer + Growth
+            function updateGlobalTimersAndCheckRevenue() {
+                const now = new Date();
+                const utcHours = now.getUTCHours();
+                const utcMinutes = now.getUTCMinutes();
+                const utcSeconds = now.getUTCSeconds();
+
+                const currentSecondsSinceMidnight = (utcHours * 3600) + (utcMinutes * 60) + utcSeconds;
+                const cycleLengthSeconds = 8 * 3600; // 8 hours
+
+                const secondsInCurrentCycle = currentSecondsSinceMidnight % cycleLengthSeconds;
+                const secondsRemaining = cycleLengthSeconds - secondsInCurrentCycle;
+
+                const hours = Math.floor(secondsRemaining / 3600);
+                const minutes = Math.floor((secondsRemaining % 3600) / 60);
+                const seconds = secondsRemaining % 60;
+
+                const timeString =
+                    String(hours).padStart(2, "0") + ":" +
+                    String(minutes).padStart(2, "0") + ":" +
+                    String(seconds).padStart(2, "0");
+
+                if (timerSilver) timerSilver.innerText = timeString;
+                if (timerGold) timerGold.innerText = timeString;
+                if (timerDiamond) timerDiamond.innerText = timeString;
+
+                // Detect cycle reset by tracking previous secondsInCurrentCycle
+                if (typeof updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle === 'undefined') {
+                    updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+                } else {
+                    // If secondsInCurrentCycle has wrapped around (e.g. current < previous), cycle just reset
+                    if (secondsInCurrentCycle < updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle) {
+                        // 8-hour cycle reset triggered!
+                        const amount = Math.floor(Math.random() * (50000 - 20000 + 1)) + 20000;
+                        updateRevenue(amount);
+                    }
+                    updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+                }
+            }
+
+            updateGlobalTimersAndCheckRevenue();
+            setInterval(updateGlobalTimersAndCheckRevenue, 1000);
+
+        });
+    </script>
 </body>
 </html>
