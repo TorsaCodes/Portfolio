@@ -8,22 +8,20 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-        /* --- CSS Reset & Variables --- */
+        /* --- OF Theme Variables --- */
         :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #181818;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-color: #0095f6;
-            --accent-gradient: linear-gradient(90deg, #0095f6, #0056b3);
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --blur-amount: 12px;
-            --header-height: 70px;
+            --bg-body: #f1f3f5;
+            --bg-card: #ffffff;
+            --text-main: #242529;
+            --text-secondary: #85898f;
+            --primary-blue: #00aff0;
+            --primary-blue-hover: #008cc0;
+            --border-color: #e5e8eb;
+            --header-height: 60px;
+            --tab-height: 50px;
         }
 
         * {
@@ -31,113 +29,39 @@
             margin: 0;
             padding: 0;
             scrollbar-width: thin;
-            scrollbar-color: #333 #0f0f0f;
+            scrollbar-color: #ccc #f1f3f5;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
             min-height: 100vh;
             overflow-x: hidden;
-            padding-top: var(--header-height);
-            position: relative;
-        }
-
-        /* Cinematic Background Effects */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 20% 30%, rgba(0, 149, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 70%, rgba(180, 58, 255, 0.06) 0%, transparent 50%);
-            animation: ambientShift 20s ease-in-out infinite alternate;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes ambientShift {
-            0% {
-                opacity: 0.4;
-                transform: scale(1) translate(0, 0);
-            }
-            100% {
-                opacity: 0.6;
-                transform: scale(1.1) translate(2%, 2%);
-            }
-        }
-
-        /* Film Grain Overlay */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-            opacity: 0.5;
-            pointer-events: none;
-            z-index: 1;
-            animation: grainMove 0.5s steps(10) infinite;
-        }
-
-        @keyframes grainMove {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -5%); }
-            20% { transform: translate(-10%, 5%); }
-            30% { transform: translate(5%, -10%); }
-            40% { transform: translate(-5%, 15%); }
-            50% { transform: translate(-15%, 5%); }
-            60% { transform: translate(15%, 0); }
-            70% { transform: translate(0, 10%); }
-            80% { transform: translate(-10%, 0); }
-            90% { transform: translate(10%, 5%); }
-        }
-
-        /* Vignette Overlay */
-        .vignette {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* Page Fade In */
-        @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 3;
-            animation: pageFadeIn 1.2s ease-out;
+            padding-bottom: 40px;
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
+        /* --- Container --- */
+        .container {
+            max-width: 935px; /* Standard social media width */
+            margin: 0 auto;
+            background: var(--bg-card);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
         /* --- Animations --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-in {
-            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeIn 0.6s ease-out forwards;
             opacity: 0;
         }
 
@@ -145,861 +69,507 @@
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
 
-        /* --- Sticky Header --- */
-        .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* --- Cover Image & Header --- */
+        .cover-banner {
+            height: 180px;
             width: 100%;
-            height: var(--header-height);
-            background-color: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #222;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            transition: transform 0.3s ease, height 0.3s ease, padding 0.3s ease;
-        }
-
-        .sticky-header.shrink {
-            height: 60px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
-
-        .sticky-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sticky-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid var(--accent-color);
-        }
-
-        .sticky-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-        }
-
-        .sticky-info h2 {
-            font-size: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .sticky-badge {
-            width: 14px;
-            height: 14px;
-            fill: var(--accent-color);
-        }
-
-        .btn-sticky-sub {
-            background: var(--accent-gradient);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .btn-sticky-sub:hover { transform: scale(1.05); }
-
-        /* --- Layout --- */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* --- Profile Header Section --- */
-        .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 40px 0 20px 0;
-            gap: 20px;
-            border-bottom: 1px solid #222;
-        }
-
-        .avatar-container {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
             position: relative;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            padding: 4px;
-            background: var(--accent-gradient);
-            box-shadow: 0 0 25px rgba(0, 149, 246, 0.3);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            padding: 0 16px 20px 16px;
+            position: relative;
+        }
+
+        /* Avatar styling overlapping cover */
+        .avatar-wrapper {
+            margin-top: -64px; /* Pull up into cover */
+            margin-bottom: 12px;
+            display: inline-block;
+            position: relative;
         }
 
         .avatar {
-            width: 100%;
-            height: 100%;
+            width: 128px;
+            height: 128px;
             border-radius: 50%;
+            border: 4px solid var(--bg-card);
             object-fit: cover;
-            border: 4px solid var(--bg-color);
-            background-color: #333;
+            background-color: #ddd;
         }
 
-        .name-section {
+        .verified-badge-small {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 5px;
+            border: 3px solid var(--bg-card);
+        }
+        .verified-badge-small svg { width: 16px; height: 16px; fill: white; }
+
+        .profile-info {
+            margin-bottom: 20px;
         }
 
-        h1 { font-size: 1.8rem; font-weight: 700; }
-
-        .verified-badge {
-            position: relative;
-            display: inline-flex;
+        .name-row {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            color: var(--accent-color);
-            cursor: help;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
         }
-        .verified-badge svg { width: 22px; height: 22px; fill: currentColor; }
-        
-        .verified-badge::after {
-            content: "Verified Profile";
-            position: absolute;
-            bottom: 140%;
-            left: 50%;
-            transform: translateX(-50%) scale(0.8);
-            background-color: #2b2b2b;
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            border: 1px solid #444;
-            z-index: 10;
+
+        h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
         }
-        .verified-badge:hover::after {
-            opacity: 1; visibility: visible; transform: translateX(-50%) scale(1);
+
+        .username {
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         /* --- Stats Row --- */
-        .stats-row {
+        .stats-container {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 15px;
+            gap: 24px;
+            margin: 12px 0 16px 0;
             flex-wrap: wrap;
         }
 
         .stat-item {
-            text-align: center;
+            font-size: 14px;
+            color: var(--text-main);
         }
 
-        .stat-number {
-            display: block;
-            font-size: 1.2rem;
+        .stat-item span {
             font-weight: 700;
-            color: #fff;
+            color: var(--text-main);
         }
-
+        
         .stat-label {
-            font-size: 0.8rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-left: 2px;
         }
 
-        .subscriber-highlight {
-            color: var(--accent-color);
-        }
-
-        .revenue-highlight {
-            background: linear-gradient(90deg, #f7e27c, #d4af37, #fff4b0);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            font-weight: 700;
-        }
-
-        .bio {
-            max-width: 500px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        /* --- Mastered Moves Section --- */
-        .mastered-moves-section {
-            width: 100%;
-            max-width: 700px;
-            margin: 10px 0 20px 0;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .mastered-moves-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .moves-title {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-            display: flex;
+        /* --- Online Status --- */
+        .online-status {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
+            font-size: 13px;
             font-weight: 600;
+            color: var(--text-secondary);
+            background: #f0f2f5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
         }
 
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #31a24c; /* OF Green */
+            border-radius: 50%;
+        }
+        
+        .online-status.offline { color: var(--text-secondary); }
+        .online-status.offline .status-dot { background: #ccc; }
+
+        /* --- Bio --- */
+        .bio {
+            font-size: 15px;
+            color: var(--text-main);
+            white-space: pre-line;
+            margin-bottom: 16px;
+            max-width: 600px;
+        }
+
+        /* --- Mastered Moves (Tags) --- */
+        .mastered-moves-section {
+            margin-bottom: 20px;
+        }
         .moves-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            justify-content: center;
         }
-
         .move-tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: #bbb;
+            background: #f1f3f5;
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 16px;
+            transition: 0.2s;
             cursor: default;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            user-select: none;
-            backdrop-filter: blur(4px);
         }
-
         .move-tag:hover {
-            background: rgba(0, 149, 246, 0.15);
-            border-color: rgba(0, 149, 246, 0.5);
-            color: #fff;
-            box-shadow: 0 0 12px rgba(0, 149, 246, 0.2);
-            transform: scale(1.08);
-            z-index: 2;
+            background: #e4e6eb;
+            color: var(--text-main);
         }
 
-        /* Buttons */
+        /* --- Action Buttons --- */
         .button-group {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .btn {
-            padding: 12px 24px;
+            padding: 8px 16px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 14px;
             cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            transition: 0.2s;
+            border: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: none;
-        }
-
-        .btn-instagram,
-        .btn-msg {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .btn-instagram:hover,
-        .btn-msg:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-color);
         }
 
         .btn-subscribe {
-            background: var(--accent-gradient);
+            background-color: var(--primary-blue);
             color: white;
-            box-shadow: 0 4px 15px rgba(0, 149, 246, 0.4);
         }
-        .btn-subscribe:hover { 
-            box-shadow: 0 6px 20px rgba(0, 149, 246, 0.6); 
-            transform: translateY(-1px); 
+        .btn-subscribe:hover { background-color: var(--primary-blue-hover); }
+
+        .btn-secondary {
+            background-color: #f0f2f5;
+            color: var(--text-main);
+            border: 1px solid transparent;
+        }
+        .btn-secondary:hover { background-color: #e4e6eb; }
+
+        /* --- Sticky Tabs --- */
+        .sticky-nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* --- Membership Tiers Section --- */
+        .nav-tabs {
+            display: flex;
+            gap: 40px;
+            padding: 0 16px;
+        }
+
+        .nav-tab {
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tab.active {
+            color: var(--text-main);
+            border-bottom-color: var(--primary-blue);
+        }
+
+        /* --- Membership Tiers (Bundles) --- */
         .tiers-section {
-            padding: 40px 0;
+            padding: 20px 16px;
+            background-color: var(--bg-body);
+            border-top: 1px solid var(--border-color);
         }
 
         .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
         }
 
         .tiers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
         }
 
         .tier-card {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            transition: 0.2s;
         }
 
         .tier-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .tier-card.silver {
-            border: 1px solid #c0c0c0;
-            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
-        }
-
-        .tier-card.silver::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #eeeeee, #bfbfbf, #ffffff);
-        }
-
-        .tier-card.silver .tier-features li::before {
-            color: #c0c0c0;
-        }
-
-        .tier-card.gold {
-            border: 1px solid #d4af37;
-            background: linear-gradient(180deg, #1a1a1a 0%, #2b2208 100%);
-        }
-
-        .tier-card.gold::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f7e27c, #d4af37, #fff4b0);
-        }
-
-        .tier-card.gold .tier-features li::before {
-            color: #d4af37;
-        }
-
-        .tier-card.diamond {
-            border: 1px solid #8fd3ff;
-            background: linear-gradient(180deg, #1a1a1a 0%, #0f1a22 100%);
-            box-shadow: 0 0 20px rgba(143, 211, 255, 0.25);
-        }
-
-        .tier-card.diamond::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #b9f2ff, transparent);
-            animation: diamondShine 3s infinite linear;
-        }
-
-        @keyframes diamondShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .tier-card.diamond .tier-features li::before {
-            color: #8fd3ff;
+            border-color: #ccc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .tier-name {
-            font-size: 1.4rem;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--text-primary);
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .countdown {
+            font-size: 11px;
+            color: #d93025; /* Red for urgency */
+            font-weight: 600;
         }
 
         .tier-price {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
         }
-
-        .tier-price span {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .tier-features {
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
+        .tier-price span { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
 
         .tier-features li {
-            margin-bottom: 10px;
+            font-size: 13px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .tier-features li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-size: 1.2rem;
+            content: "✓";
+            color: var(--primary-blue);
+            font-weight: bold;
         }
 
         .tier-btn {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 4px; /* Slightly squarer than social buttons */
             border: none;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background-color: var(--primary-blue);
+            color: white;
+            margin-top: 15px;
+            font-size: 14px;
         }
+        .tier-btn:hover { background-color: var(--primary-blue-hover); }
 
-        .tier-btn.silver {
-            background: linear-gradient(90deg, #bfbfbf, #e6e6e6);
-            color: #000;
-        }
+        /* Specific Tier Accents */
+        .tier-card.gold { border-top: 3px solid #d4af37; }
+        .tier-card.silver { border-top: 3px solid #c0c0c0; }
+        .tier-card.diamond { border-top: 3px solid #8fd3ff; }
 
-        .tier-btn.gold {
-            background: linear-gradient(90deg, #d4af37, #f7e27c);
-            color: #000;
-        }
-
-        .tier-btn.diamond {
-            background: linear-gradient(90deg, #b9f2ff, #8fd3ff);
-            color: #000;
-            box-shadow: 0 4px 20px rgba(143, 211, 255, 0.4);
-        }
-
-        .tier-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* --- Protected Posts Grid --- */
+        /* --- Posts Grid (Media Tab Style) --- */
         .grid-section { 
-            padding: 40px 0; 
+            padding: 20px 16px; 
+            background-color: var(--bg-body);
+            border-top: 1px solid var(--border-color);
         }
 
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr); /* OF Media Grid is usually 3 or 4 cols */
+            gap: 4px; /* Tight gap like OF */
         }
 
         .post-card {
             position: relative;
             aspect-ratio: 4/5;
-            background-color: #222;
-            border-radius: 8px;
+            background-color: #e4e6eb;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-        }
-
-        .post-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(0, 149, 246, 0.3);
         }
 
         .post-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
-            user-select: none;
-            pointer-events: none;
+            transition: 0.3s;
         }
 
+        /* Lock Overlay Style */
         .post-card:hover .post-image {
             transform: scale(1.05);
         }
 
-        /* Blur Security System */
-        .post-image.protected {
-            filter: blur(20px) grayscale(60%);
-            animation: subtleBlurMotion 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes subtleBlurMotion {
-            0% {
-                filter: blur(20px) grayscale(60%) brightness(0.7);
-            }
-            100% {
-                filter: blur(22px) grayscale(65%) brightness(0.65);
-            }
-        }
-
-        .post-card:hover .post-image.protected {
-            filter: blur(18px) grayscale(40%);
-        }
-
-        /* Dynamic Watermark Overlay */
-        .watermark-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-            overflow: hidden;
-        }
-
-        .watermark-text {
-            position: absolute;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.4);
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-            white-space: nowrap;
-            animation: watermarkMove 15s linear infinite;
-            user-select: none;
-        }
-
-        @keyframes watermarkMove {
-            0% {
-                top: -10%;
-                left: -10%;
-            }
-            25% {
-                top: 110%;
-                left: 30%;
-            }
-            50% {
-                top: -10%;
-                left: 70%;
-            }
-            75% {
-                top: 110%;
-                left: 110%;
-            }
-            100% {
-                top: -10%;
-                left: -10%;
-            }
-        }
-
         .lock-overlay {
             position: absolute;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85); /* Light overlay */
+            backdrop-filter: blur(4px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 4;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(2px);
-            transition: background 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .post-card:hover .lock-overlay {
-            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 10px;
         }
 
         .lock-icon {
-            width: 32px; 
-            height: 32px;
-            fill: white;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            width: 24px; height: 24px;
+            fill: var(--primary-blue);
             margin-bottom: 8px;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .post-card:hover .lock-icon { 
-            transform: scale(1.15); 
         }
 
         .locked-text {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-            text-align: center;
-            padding: 0 10px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .post-card:hover .locked-text {
-            opacity: 1;
-            transform: translateY(0);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1.3;
         }
 
         .caption-preview {
+            display: none; /* Hide captions in grid view for cleaner OF look, or show on hover */
+        }
+        
+        .post-card:hover .caption-preview {
+            display: block;
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 30px 10px 10px 10px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            font-size: 0.85rem;
-            color: #ddd;
-            z-index: 5;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 11px;
+            padding: 8px;
         }
 
-        /* Right-click and drag protection */
-        .post-image.protected,
-        .watermark-overlay {
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-            user-drag: none;
+        /* Blur Protection */
+        .post-image.protected {
+            filter: blur(15px);
+            transform: scale(1.1);
+        }
+        .post-card:hover .post-image.protected {
+            filter: blur(12px);
         }
 
         /* --- Modal --- */
         .modal-overlay {
             position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+            inset: 0;
+            background: rgba(0,0,0,0.6);
             z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: 0.2s;
         }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal-box {
-            background: #1e1e1e;
+            background: white;
             width: 90%;
             max-width: 500px;
-            padding: 30px;
             border-radius: 12px;
-            border: 1px solid #333;
-            transform: translateY(20px);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transform: scale(0.95);
+            transition: 0.2s;
         }
-
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
-        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
         .close-modal {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
+            background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-secondary);
         }
 
         .msg-textarea {
             width: 100%;
-            height: 120px;
-            background: #121212;
-            border: 1px solid #333;
+            height: 100px;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 15px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            padding: 10px;
+            font-family: inherit;
             resize: none;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
         }
-        .msg-textarea:focus { outline: 1px solid var(--accent-color); }
+        .msg-textarea:focus { outline: 2px solid var(--primary-blue); border-color: transparent; }
 
-        .modal-actions { text-align: right; }
-
-        /* --- Activity Toast --- */
+        /* --- Toast Notification --- */
         .activity-toast {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(30, 30, 30, 0.95);
-            border: 1px solid #333;
-            padding: 12px 16px;
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 12px;
             border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            z-index: 900;
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 900;
             max-width: 300px;
         }
-
-        .activity-toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .activity-icon {
-            width: 10px; 
-            height: 10px;
-            background: #00c853;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00c853;
-        }
-
-        .activity-text {
-            font-size: 0.85rem;
-            color: #eee;
-        }
+        .activity-toast.show { transform: translateY(0); opacity: 1; }
         
-        .activity-time {
-            font-size: 0.7rem;
-            color: #777;
-            display: block;
-        }
-
-        /* --- Online Status --- */
-        .online-status {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            margin-top: 6px;
-            font-weight: 500;
-            color: #00c853;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #00c853;
+        .toast-avatar {
+            width: 32px; height: 32px;
             border-radius: 50%;
-            box-shadow: 0 0 8px #00c853;
+            background: #eee;
+            object-fit: cover;
         }
 
-        .online-status.offline {
-            color: #888;
-        }
+        .activity-content { font-size: 13px; }
+        .activity-text { font-weight: 600; color: var(--text-main); }
+        .activity-time { color: var(--text-secondary); font-size: 12px; }
 
-        .online-status.offline .status-dot {
-            background: #555;
-            box-shadow: none;
-        }
-
-        .viewer-count {
-            font-size: 14px;
-            margin-top: 5px;
-            color: #aaa;
-            text-align: center;
-        }
-
-        .countdown {
-            margin: 10px 0 20px 0;
-            font-size: 14px;
-            color: #ff4d4d;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        /* --- Responsive Design --- */
+        /* --- Responsive --- */
         @media (max-width: 768px) {
+            .container { box-shadow: none; }
             .posts-grid { grid-template-columns: repeat(3, 1fr); }
-            .sticky-info h2 { font-size: 0.9rem; }
-            .tiers-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 480px) {
-            .posts-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .stat-item { min-width: 80px; }
-            .btn { width: 100%; max-width: 300px; }
-            .activity-toast { left: 10px; right: 10px; bottom: 10px; max-width: none; }
+            .posts-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+            .cover-banner { height: 120px; }
+            .avatar { width: 100px; height: 100px; }
+            .avatar-wrapper { margin-top: -50px; }
+            .btn { width: 100%; margin-bottom: 8px; }
+            .nav-tabs { gap: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Vignette Overlay -->
-    <div class="vignette"></div>
 
-    <!-- Sticky Top Bar -->
-    <nav class="sticky-header" id="stickyHeader">
-        <div class="sticky-avatar">
-            <img src="images/img1.jpg" alt="Torsa Farooqi" />
-        </div>
-        <a href="https://form.typeform.com/to/IhDQzITL" class="btn-sticky-sub">
-            Subscribe
-        </a>
-    </nav>
+<div class="container">
+    
+    <!-- Cover Image Banner -->
+    <div class="cover-banner"></div>
 
-    <main class="container">
-        <!-- Header / Profile Section -->
-        <header class="profile-header animate-in">
-            <div class="avatar-container">
-                <img src="images/img1.jpg" class="avatar" alt="Torsa Farooqi" />
+    <!-- Profile Header -->
+    <header class="header-content animate-in">
+        <div class="avatar-wrapper">
+            <img src="images/img1.jpg" class="avatar" alt="Torsa Farooqi" />
+            <div class="verified-badge-small">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
             </div>
+        </div>
 
-            <div class="name-section">
+        <div class="profile-info">
+            <div class="name-row">
                 <h1>Torsa Farooqi</h1>
-                <div class="verified-badge" title="Verified Profile">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                    </svg>
-                </div>
+                <span class="username">@torsa_farooqi</span>
             </div>
 
             <!-- Online Status -->
@@ -1007,36 +577,19 @@
                 <span class="status-dot"></span>
                 <span class="status-text">Online Now</span>
             </div>
-            <div class="viewer-count">
-                👀 <span id="viewerNumber">128</span> people viewing right now
-            </div>
 
-            <!-- Exclusive Content Stats -->
-            <div class="stats-row delay-1 animate-in">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="316">0</span>
-                    <span class="stat-label">Photos</span>
+            <!-- Stats -->
+            <div class="stats-container delay-1 animate-in">
+                <div class="stat-item"><span data-target="316">0</span> <span class="stat-label">posts</span></div>
+                <div class="stat-item"><span data-target="257000">0</span> <span class="stat-label">followers</span></div>
+                <div class="stat-item"><span data-target="151">0</span> <span class="stat-label">media</span></div>
+                <div class="stat-item" style="color:var(--text-secondary); font-size:13px; display:flex; align-items:center;">
+                    💰 <span id="revenueCounter" style="font-size:14px; font-weight:700; margin-left:5px;">$0</span> earned
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="151">0</span>
-                    <span class="stat-label">Videos</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="25">0</span>
-                    <span class="stat-label">Live Streams</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number subscriber-highlight" data-target="257000">0</span>
-                    <span class="stat-label">Subscribers</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <span id="revenueCounter" class="stat-number revenue-highlight">$0</span>
-                <span class="stat-label">Revenue Earned</span>
             </div>
 
             <p class="bio delay-2 animate-in">
-                Full-time on cam at Kink.com and I love being watched.
+Full-time on cam at Kink.com and I love being watched.
 
 Salpingectomy done. No fear. No limits. Just heat and hunger.
 
@@ -1050,574 +603,514 @@ Not innocent. Not subtle.
 Pure lust in luxury form. 🔥
             </p>
 
-            <!-- Mastered Moves Section -->
+            <!-- Mastered Moves -->
             <section class="mastered-moves-section" id="masteredMoves">
-                <div class="moves-title">Mastered Moves 🔥</div>
                 <div class="moves-grid">
                     <span class="move-tag">Anal</span>
                     <span class="move-tag">BDSM</span>
                     <span class="move-tag">Blowjob</span>
-                    <span class="move-tag">Bondage</span>
                     <span class="move-tag">Deepthroat</span>
-                    <span class="move-tag">Doggy Style</span>
                     <span class="move-tag">Domination</span>
-                    <span class="move-tag">Group</span>
-                    <span class="move-tag">Hardcore</span>
                     <span class="move-tag">Role-Playing</span>
-                    <span class="move-tag">Psychology</span>
-                    <span class="move-tag">Missionary</span>
-                    <span class="move-tag">Cowgirl</span>
-                    <span class="move-tag">Reverse Cowgirl</span>
-                    <span class="move-tag">Spooning</span>
-                    <span class="move-tag">Lotus</span>
-                    <span class="move-tag">Standing</span>
-                    <span class="move-tag">Face-to-Face Sitting</span>
-                    <span class="move-tag">Lap Dance Position</span>
-                    <span class="move-tag">Butterfly</span>
-                    <span class="move-tag">Side-by-Side</span>
-                    <span class="move-tag">Flatiron</span>
-                    <span class="move-tag">The Bridge</span>
-                    <span class="move-tag">The Chair</span>
-                    <span class="move-tag">The Scoop</span>
-                    <span class="move-tag">The Pretzel</span>
-                    <span class="move-tag">The Cross</span>
-                    <span class="move-tag">The T-Position</span>
-                    <span class="move-tag">The Amazon</span>
-                    <span class="move-tag">The Deck Chair</span>
-                    <span class="move-tag">The Y-Position</span>
-                    <span class="move-tag">The Crab</span>
-                    <span class="move-tag">The Lazy Dog</span>
-                    <span class="move-tag">The Spider</span>
-                    <span class="move-tag">The Pillow Lift</span>
-                    <span class="move-tag">And Many More</span>
+                    <span class="move-tag">Hardcore</span>
+                    <span class="move-tag">Group</span>
+                    <span class="move-tag">Custom Content</span>
                 </div>
             </section>
 
+            <!-- Action Buttons -->
             <div class="button-group delay-3 animate-in">
-                <a href="https://www.instagram.com/torsa.sucks.slowly/" target="_blank" class="btn btn-instagram">
-                    Instagram
-                </a>
-                <button class="btn btn-msg" id="openMsgBtn">
-                    Send Private Message
-                </button>
                 <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="btn btn-subscribe">
-                    Subscribe Now
+                    SUBSCRIBE
+                </a>
+                <button class="btn btn-secondary" id="openMsgBtn">
+                    Message
+                </button>
+                <a href="https://www.instagram.com/torsa.sucks.slowly/" target="_blank" class="btn btn-secondary" style="padding: 8px;">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Membership Tiers Section -->
-        <section class="tiers-section animate-in delay-2">
-            <h2 class="section-title">Membership Plans</h2>
-            <div class="tiers-grid">
-                <!-- Silver -->
-                <div class="tier-card silver">
-                    <div class="countdown">
-                        🔥 Price increases in: <span id="timerSilver">--:--:--</span>
-                    </div>
-                    <div class="tier-name">Silver</div>
-                    <div class="tier-price">$60 <span>/ month</span></div>
-                    <ul class="tier-features">
-                        <li>Access to 50+ Photos</li>
-                        <li>Basic Support</li>
-                        <li>Cancel Anytime</li>
-                    </ul>
-                    <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn silver unlock-btn">Select Silver</a>
-                </div>
-
-                <!-- Gold -->
-                <div class="tier-card gold">
-                    <div class="countdown">
-                        🔥 Price increases in: <span id="timerGold">--:--:--</span>
-                    </div>
-                    <div class="tier-name">Gold</div>
-                    <div class="tier-price">$180 <span>/ month</span></div>
-                    <ul class="tier-features">
-                        <li>Access to All Photos & Videos</li>
-                        <li>Direct Messaging</li>
-                        <li>Exclusive Stories</li>
-                    </ul>
-                    <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn gold unlock-btn">Select Gold</a>
-                </div>
-
-                <!-- Diamond -->
-                <div class="tier-card diamond">
-                    <div class="countdown">
-                        🔥 Price increases in: <span id="timerDiamond">--:--:--</span>
-                    </div>
-                    <div class="tier-name">Diamond</div>
-                    <div class="tier-price">$300 <span>/ month</span></div>
-                    <ul class="tier-features">
-                        <li>Everything in Gold</li>
-                        <li>1-on-1 Video Calls</li>
-                        <li>Custom Content Requests</li>
-                        <li>Priority Support</li>
-                    </ul>
-                    <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn diamond unlock-btn">Join Diamond</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Protected Content Grid -->
-        <section class="grid-section animate-in delay-3">
-            <h2 class="section-title">Recent Posts</h2>
-            <div class="posts-grid">
-                <!-- Post 1 -->
-                <div class="post-card">
-                    <div class="caption-preview">Wrong holes with big cumshots! 🍌</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/1/380/12243830/12243830_015_899c.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-
-                <!-- Post 2 -->
-                <div class="post-card">
-                    <div class="caption-preview">Squirting orgasms 💦</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/5/11/19550251/19550251_007_35f1.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-
-                <!-- Post 3 -->
-                <div class="post-card">
-                    <div class="caption-preview">Hard Fuck-rough Dominating Sex</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/7/125/72860863/72860863_201_1828.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-
-                <!-- Post 4 -->
-                <div class="post-card">
-                    <div class="caption-preview">Hot sex with muscular guy after romantic date on the beach</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/7/658/45005296/45005296_033_21bc.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-
-                <!-- Post 5 -->
-                <div class="post-card">
-                    <div class="caption-preview">Intimate Hot Sex with Hot Big Ass Indian🍑</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/7/649/53732565/53732565_126_9398.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-
-                <!-- Post 6 -->
-                <div class="post-card">
-                    <div class="caption-preview">Rare and epic squirts🔥</div>
-                    <div class="watermark-overlay">
-                        <span class="watermark-text">Torsa Farooqi</span>
-                    </div>
-                    <div class="lock-overlay">
-                        <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                        <span class="locked-text">Subscribe to unlock</span>
-                    </div>
-                    <img data-src="https://cdni.pornpics.de/1280/7/658/45005296/45005296_215_2f7b.jpg" class="post-image protected" alt="Locked Post" />
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Private Message Modal -->
-    <div class="modal-overlay" id="msgModal">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3>Send Private Message</h3>
-                <button class="close-modal" id="closeMsgBtn">&times;</button>
-            </div>
-            <textarea class="msg-textarea" placeholder="Write your message to Torsa here..."></textarea>
-            <div class="modal-actions">
-                <button class="btn btn-subscribe" id="sendMsgBtn">Send Message</button>
+    <!-- Sticky Navigation Tabs -->
+    <nav class="sticky-nav-wrapper">
+        <div class="container" style="background: transparent; box-shadow: none; min-height: auto;">
+            <div class="nav-tabs">
+                <div class="nav-tab active">Posts</div>
+                <div class="nav-tab">Media</div>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Activity Toast -->
-    <div class="activity-toast" id="activityToast">
-        <div class="activity-icon"></div>
-        <div class="activity-content">
-            <div class="activity-text" id="activityText">Alex just subscribed</div>
-            <span class="activity-time">Just now</span>
+    <!-- Membership Tiers Section -->
+    <section class="tiers-section animate-in delay-2">
+        <h2 class="section-title">Subscription Bundles</h2>
+        <div class="tiers-grid">
+            <!-- Silver -->
+            <div class="tier-card silver">
+                <div class="tier-name">SILVER <span class="countdown" id="timerSilver">Ends in --:--:--</span></div>
+                <div class="tier-price">$60 <span>/ month</span></div>
+                <ul class="tier-features">
+                    <li>Access to 50+ Photos</li>
+                    <li>Basic Support</li>
+                    <li>Cancel Anytime</li>
+                </ul>
+                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn unlock-btn">Select Silver</a>
+            </div>
+
+            <!-- Gold -->
+            <div class="tier-card gold">
+                <div class="tier-name">GOLD <span class="countdown" id="timerGold">Ends in --:--:--</span></div>
+                <div class="tier-price">$180 <span>/ month</span></div>
+                <ul class="tier-features">
+                    <li>Access to All Photos & Videos</li>
+                    <li>Direct Messaging</li>
+                    <li>Exclusive Stories</li>
+                </ul>
+                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn unlock-btn">Select Gold</a>
+            </div>
+
+            <!-- Diamond -->
+            <div class="tier-card diamond">
+                <div class="tier-name">DIAMOND <span class="countdown" id="timerDiamond">Ends in --:--:--</span></div>
+                <div class="tier-price">$300 <span>/ month</span></div>
+                <ul class="tier-features">
+                    <li>Everything in Gold</li>
+                    <li>1-on-1 Video Calls</li>
+                    <li>Custom Content Requests</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="tier-btn unlock-btn">Join Diamond</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protected Content Grid -->
+    <section class="grid-section animate-in delay-3">
+        <div class="posts-grid">
+            <!-- Post 1 -->
+            <div class="post-card">
+                <div class="caption-preview">Wrong holes with big cumshots! 🍌</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/1/380/12243830/12243830_015_899c.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 2 -->
+            <div class="post-card">
+                <div class="caption-preview">Squirting orgasms 💦</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/5/11/19550251/19550251_007_35f1.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 3 -->
+            <div class="post-card">
+                <div class="caption-preview">Hard Fuck-rough Dominating Sex</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/7/125/72860863/72860863_201_1828.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 4 -->
+            <div class="post-card">
+                <div class="caption-preview">Hot sex with muscular guy</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/7/658/45005296/45005296_033_21bc.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 5 -->
+            <div class="post-card">
+                <div class="caption-preview">Intimate Hot Sex Indian🍑</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/7/649/53732565/53732565_126_9398.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 6 -->
+            <div class="post-card">
+                <div class="caption-preview">Rare and epic squirts🔥</div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <div class="locked-text">Subscribe to<br>unlock</div>
+                </div>
+                <img data-src="https://cdni.pornpics.de/1280/7/658/45005296/45005296_215_2f7b.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Private Message Modal -->
+<div class="modal-overlay" id="msgModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Send Private Message</h3>
+            <button class="close-modal" id="closeMsgBtn">&times;</button>
+        </div>
+        <textarea class="msg-textarea" placeholder="Write your message to Torsa here..."></textarea>
+        <div style="text-align: right;">
+            <button class="btn btn-subscribe" id="sendMsgBtn">Send Message</button>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+<!-- Activity Toast (Styled like OF notification) -->
+<div class="activity-toast" id="activityToast">
+    <img src="images/img1.jpg" class="toast-avatar" alt="Torsa">
+    <div class="activity-content">
+        <div class="activity-text" id="activityText">Alex just subscribed</div>
+        <span class="activity-time">Just now</span>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        // Subscription State
+        let userSubscribed = false;
+
+        // Dynamic Blur Security System
+        function initProtectedImages() {
+            const protectedImages = document.querySelectorAll('.post-image.protected');
             
-            // Subscription State (simulated)
-            let userSubscribed = false;
-
-            // Dynamic Blur Security System
-            function initProtectedImages() {
-                const protectedImages = document.querySelectorAll('.post-image.protected');
-                
-                protectedImages.forEach(img => {
-                    if (userSubscribed) {
-                        const realSrc = img.getAttribute('data-src');
-                        if (realSrc) {
-                            img.src = realSrc;
-                            img.classList.remove('protected');
-                        }
-                    } else {
-                        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500"%3E%3Crect fill="%23222" width="400" height="500"/%3E%3C/svg%3E';
+            protectedImages.forEach(img => {
+                if (userSubscribed) {
+                    const realSrc = img.getAttribute('data-src');
+                    if (realSrc) {
+                        img.src = realSrc;
+                        img.classList.remove('protected');
+                        // Hide lock overlay if subscribed
+                        img.parentElement.querySelector('.lock-overlay').style.display = 'none';
                     }
-                });
-
-                // Prevent right-click on protected images
-                protectedImages.forEach(img => {
-                    img.addEventListener('contextmenu', (e) => {
-                        if (!userSubscribed) {
-                            e.preventDefault();
-                            return false;
-                        }
-                    });
-                });
-            }
-
-            initProtectedImages();
-
-            // Sticky Header Shrink
-            const header = document.getElementById('stickyHeader');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('shrink');
                 } else {
-                    header.classList.remove('shrink');
+                    // Placeholder
+                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500"%3E%3Crect fill="%23e4e6eb" width="400" height="500"/%3E%3C/svg%3E';
                 }
             });
 
-            // Online Status Toggle
-            const statusElement = document.getElementById("onlineStatus");
-            function toggleStatus() {
-                const isOnline = Math.random() > 0.3;
-                if (isOnline) {
-                    statusElement.classList.remove("offline");
-                    statusElement.querySelector(".status-text").innerText = "Online Now";
-                } else {
-                    statusElement.classList.add("offline");
-                    statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
-                }
-            }
-            toggleStatus();
-            setInterval(toggleStatus, 20000);
-
-            // Animated Counters
-            const counters = document.querySelectorAll('.stat-number:not(#revenueCounter)');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let count = 0;
-                const increment = target / 120;
-
-                const updateCount = () => {
-                    count += increment;
-                    if (count < target) {
-                        if (target === 257000) {
-                            counter.innerText = Math.floor(count).toLocaleString();
-                        } else {
-                            counter.innerText = Math.floor(count);
-                        }
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        if (target === 257000) {
-                            counter.innerText = "257K";
-                        } else {
-                            counter.innerText = target;
-                        }
+            // Prevent right-click
+            protectedImages.forEach(img => {
+                img.addEventListener('contextmenu', (e) => {
+                    if (!userSubscribed) {
+                        e.preventDefault();
+                        return false;
                     }
-                };
-                updateCount();
+                });
             });
+        }
 
-            // Modal Logic
-            const modal = document.getElementById('msgModal');
-            const openBtn = document.getElementById('openMsgBtn');
-            const closeBtn = document.getElementById('closeMsgBtn');
-            const sendBtn = document.getElementById('sendMsgBtn');
-            const textarea = document.querySelector('.msg-textarea');
+        initProtectedImages();
 
-            openBtn.addEventListener('click', () => {
-                modal.classList.add('active');
-                textarea.focus();
-            });
+        // Online Status Toggle
+        const statusElement = document.getElementById("onlineStatus");
+        function toggleStatus() {
+            const isOnline = Math.random() > 0.3;
+            if (isOnline) {
+                statusElement.classList.remove("offline");
+                statusElement.querySelector(".status-text").innerText = "Online Now";
+            } else {
+                statusElement.classList.add("offline");
+                statusElement.querySelector(".status-text").innerText = "Last seen 2 mins ago";
+            }
+        }
+        toggleStatus();
+        setInterval(toggleStatus, 20000);
 
-            const closeModal = () => {
-                modal.classList.remove('active');
+        // Animated Counters
+        const counters = document.querySelectorAll('.stat-item span[data-target]');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            let count = 0;
+            const increment = target / 100;
+
+            const updateCount = () => {
+                count += increment;
+                if (count < target) {
+                    if (target === 257000) {
+                        counter.innerText = Math.floor(count).toLocaleString();
+                    } else {
+                        counter.innerText = Math.floor(count);
+                    }
+                    requestAnimationFrame(updateCount);
+                } else {
+                    if (target === 257000) {
+                        counter.innerText = "257K";
+                    } else {
+                        counter.innerText = target;
+                    }
+                }
             };
+            updateCount();
+        });
 
-            closeBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
+        // Modal Logic
+        const modal = document.getElementById('msgModal');
+        const openBtn = document.getElementById('openMsgBtn');
+        const closeBtn = document.getElementById('closeMsgBtn');
+        const sendBtn = document.getElementById('sendMsgBtn');
+        const textarea = document.querySelector('.msg-textarea');
 
-            sendBtn.addEventListener('click', () => {
-                if(textarea.value.trim() !== "") {
-                    const originalText = sendBtn.innerText;
-                    sendBtn.innerText = "Sent!";
-                    sendBtn.style.background = "#00c853";
-                    setTimeout(() => {
-                        closeModal();
-                        textarea.value = "";
-                        sendBtn.innerText = originalText;
-                        sendBtn.style.background = "";
-                    }, 800);
-                }
-            });
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            textarea.focus();
+        });
 
-            // Mastered Moves Scroll Animation
-            const movesSection = document.getElementById('masteredMoves');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); 
-                    }
-                });
-            }, { threshold: 0.2 });
+        const closeModal = () => {
+            modal.classList.remove('active');
+        };
 
-            if(movesSection) {
-                observer.observe(movesSection);
-            }
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
 
-            // Activity Feed
-            const toast = document.getElementById('activityToast');
-            const toastText = document.getElementById('activityText');
-            const activities = [
-                "Alex just subscribed",
-                "Jordan unlocked a post",
-                "Taylor sent a tip",
-                "Casey liked Torsa's photo",
-                "Morgan joined Gold Tier",
-                "Riley viewed Torsa's story",
-                "Jamie just subscribed",
-                "Drew unlocked exclusive content",
-                "Sam sent a generous tip",
-                "Blake liked Torsa's post",
-                "Charlie upgraded to Platinum",
-                "Avery joined VIP Access",
-                "Quinn viewed Torsa's story",
-                "Parker unlocked premium content",
-                "Reese just became a member",
-                "Skyler sent a special tip",
-                "Rowan liked Torsa's latest upload",
-                "Finley joined Silver Tier",
-                "Hayden unlocked a private post",
-                "Emerson just subscribed",
-                "Kai reacted to Torsa's story",
-                "Logan joined Gold Tier",
-                "Harper unlocked bonus content",
-                "Arden sent a tip",
-                "Sage liked Torsa's photo",
-                "Phoenix just upgraded to VIP"
-            ];
-
-            const showNotification = () => {
-                const randomActivity = activities[Math.floor(Math.random() * activities.length)];
-                toastText.innerText = randomActivity;
-                toast.classList.add('show');
+        sendBtn.addEventListener('click', () => {
+            if(textarea.value.trim() !== "") {
+                const originalText = sendBtn.innerText;
+                sendBtn.innerText = "Sent!";
+                sendBtn.style.background = "#31a24c"; // OF Green
                 setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 4000);
-            };
-
-            setTimeout(showNotification, 2000); 
-            setInterval(showNotification, 10000); 
-            
-            // Live Viewer Counter
-            const viewerNumber = document.getElementById("viewerNumber");
-            function updateViewers() {
-                const random = Math.floor(Math.random() * 3001) + 4000;
-                viewerNumber.innerText = random.toLocaleString();
+                    closeModal();
+                    textarea.value = "";
+                    sendBtn.innerText = originalText;
+                    sendBtn.style.background = "";
+                }, 800);
             }
-            updateViewers();
-            setInterval(updateViewers, 15000);
+        });
 
-            // Revenue System
-            const revenueKey = "lifetimeRevenue";
-            const lastMajorBoostKey = "lastMajorBoost";
-            const majorBoostIntervalHours = 24;
-            const baseRevenueInitial = 78153590;
-            const revenueDisplay = document.getElementById("revenueCounter");
+        // Mastered Moves Animation
+        const movesSection = document.getElementById('masteredMoves');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.2 });
 
-            let revenue = localStorage.getItem(revenueKey);
-            if (revenue === null) {
+        if(movesSection) {
+            observer.observe(movesSection);
+        }
+
+        // Activity Feed
+        const toast = document.getElementById('activityToast');
+        const toastText = document.getElementById('activityText');
+        const activities = [
+            "Alex just subscribed",
+            "Jordan unlocked a post",
+            "Taylor sent a tip",
+            "Casey liked Torsa's photo",
+            "Morgan joined Gold Tier",
+            "Riley viewed Torsa's story",
+            "Jamie just subscribed",
+            "Drew unlocked exclusive content",
+            "Sam sent a generous tip",
+            "Blake liked Torsa's post",
+            "Charlie upgraded to Platinum",
+            "Avery joined VIP Access",
+            "Quinn viewed Torsa's story",
+            "Parker unlocked premium content",
+            "Reese just became a member",
+            "Skyler sent a special tip",
+            "Rowan liked Torsa's latest upload",
+            "Finley joined Silver Tier",
+            "Hayden unlocked a private post",
+            "Emerson just subscribed",
+            "Kai reacted to Torsa's story",
+            "Logan joined Gold Tier",
+            "Harper unlocked bonus content",
+            "Arden sent a tip",
+            "Sage liked Torsa's photo",
+            "Phoenix just upgraded to VIP"
+        ];
+
+        const showNotification = () => {
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            toastText.innerText = randomActivity;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        };
+
+        setTimeout(showNotification, 2000); 
+        setInterval(showNotification, 10000); 
+        
+        // Revenue System (Preserved Logic)
+        const revenueKey = "lifetimeRevenue";
+        const lastMajorBoostKey = "lastMajorBoost";
+        const majorBoostIntervalHours = 24;
+        const baseRevenueInitial = 78153590;
+        const revenueDisplay = document.getElementById("revenueCounter");
+
+        let revenue = localStorage.getItem(revenueKey);
+        if (revenue === null) {
+            revenue = baseRevenueInitial;
+            localStorage.setItem(revenueKey, revenue.toString());
+        } else {
+            revenue = parseInt(revenue, 10);
+            if (isNaN(revenue) || revenue < baseRevenueInitial) {
                 revenue = baseRevenueInitial;
                 localStorage.setItem(revenueKey, revenue.toString());
-            } else {
-                revenue = parseInt(revenue, 10);
-                if (isNaN(revenue) || revenue < baseRevenueInitial) {
-                    revenue = baseRevenueInitial;
-                    localStorage.setItem(revenueKey, revenue.toString());
-                }
+            }
+        }
+
+        let lastMajorBoost = localStorage.getItem(lastMajorBoostKey);
+        if (lastMajorBoost === null) {
+            lastMajorBoost = 0;
+            localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
+        } else {
+            lastMajorBoost = parseInt(lastMajorBoost, 10) || 0;
+        }
+
+        let displayedRevenue = 0;
+        let animationFrameId = null;
+
+        function formatRevenue(num) {
+            return "$" + num.toLocaleString();
+        }
+
+        function setRevenueDisplayInstant(num) {
+            revenueDisplay.innerText = formatRevenue(num);
+            displayedRevenue = num;
+        }
+
+        setRevenueDisplayInstant(revenue);
+
+        function animateRevenueTo(newRevenue) {
+            if (newRevenue <= displayedRevenue) return;
+            
+            const start = displayedRevenue;
+            const change = newRevenue - start;
+            const animationDuration = 1000;
+            const startTime = performance.now();
+
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
             }
 
-            let lastMajorBoost = localStorage.getItem(lastMajorBoostKey);
-            if (lastMajorBoost === null) {
-                lastMajorBoost = 0;
-                localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
-            } else {
-                lastMajorBoost = parseInt(lastMajorBoost, 10) || 0;
-            }
+            function animate(time) {
+                let elapsed = time - startTime;
+                let progress = Math.min(elapsed / animationDuration, 1);
+                progress = 1 - Math.pow(1 - progress, 3);
+                let currentValue = Math.floor(start + change * progress);
+                revenueDisplay.innerText = formatRevenue(currentValue);
+                displayedRevenue = currentValue;
 
-            let displayedRevenue = 0;
-            let animationFrameId = null;
-
-            function formatRevenue(num) {
-                return "$" + num.toLocaleString();
-            }
-
-            function setRevenueDisplayInstant(num) {
-                revenueDisplay.innerText = formatRevenue(num);
-                displayedRevenue = num;
-            }
-
-            setRevenueDisplayInstant(revenue);
-
-            function animateRevenueTo(newRevenue) {
-                if (newRevenue <= displayedRevenue) return;
-                
-                const start = displayedRevenue;
-                const change = newRevenue - start;
-                const animationDuration = 1000;
-                const startTime = performance.now();
-
-                if (animationFrameId) {
-                    cancelAnimationFrame(animationFrameId);
-                }
-
-                function animate(time) {
-                    let elapsed = time - startTime;
-                    let progress = Math.min(elapsed / animationDuration, 1);
-                    progress = 1 - Math.pow(1 - progress, 3);
-                    let currentValue = Math.floor(start + change * progress);
-                    revenueDisplay.innerText = formatRevenue(currentValue);
-                    displayedRevenue = currentValue;
-
-                    if (progress < 1) {
-                        animationFrameId = requestAnimationFrame(animate);
-                    } else {
-                        animationFrameId = null;
-                        revenueDisplay.innerText = formatRevenue(newRevenue);
-                        displayedRevenue = newRevenue;
-                    }
-                }
-
-                animationFrameId = requestAnimationFrame(animate);
-            }
-
-            function updateRevenue(amount) {
-                if (amount <= 0) return;
-                const newRevenue = revenue + amount;
-                if (newRevenue > revenue) {
-                    revenue = newRevenue;
-                    localStorage.setItem(revenueKey, revenue.toString());
-                    animateRevenueTo(revenue);
-                }
-            }
-
-            function scheduleBackgroundGrowth() {
-                const interval = Math.random() * (90000 - 30000) + 30000;
-                setTimeout(() => {
-                    const amount = Math.floor(Math.random() * (1200 - 200 + 1)) + 200;
-                    updateRevenue(amount);
-                    scheduleBackgroundGrowth();
-                }, interval);
-            }
-            scheduleBackgroundGrowth();
-
-            function setupUnlockClickGrowth() {
-                const unlockBtns = document.querySelectorAll('.unlock-btn');
-                unlockBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const amount = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
-                        updateRevenue(amount);
-                    });
-                });
-            }
-            setupUnlockClickGrowth();
-
-            function tryMajorBoost() {
-                const now = Date.now();
-                const intervalMs = majorBoostIntervalHours * 3600 * 1000;
-                if (now - lastMajorBoost >= intervalMs) {
-                    const amount = Math.floor(Math.random() * (300000 - 100000 + 1)) + 100000;
-                    updateRevenue(amount);
-                    lastMajorBoost = now;
-                    localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
-                }
-            }
-            tryMajorBoost();
-            setInterval(tryMajorBoost, 3600 * 1000);
-
-            // Global Timer
-            const timerSilver = document.getElementById("timerSilver");
-            const timerGold = document.getElementById("timerGold");
-            const timerDiamond = document.getElementById("timerDiamond");
-
-            function updateGlobalTimersAndCheckRevenue() {
-                const now = new Date();
-                const utcHours = now.getUTCHours();
-                const utcMinutes = now.getUTCMinutes();
-                const utcSeconds = now.getUTCSeconds();
-
-                const currentSecondsSinceMidnight = (utcHours * 3600) + (utcMinutes * 60) + utcSeconds;
-                const cycleLengthSeconds = 8 * 3600;
-
-                const secondsInCurrentCycle = currentSecondsSinceMidnight % cycleLengthSeconds;
-                const secondsRemaining = cycleLengthSeconds - secondsInCurrentCycle;
-
-                const hours = Math.floor(secondsRemaining / 3600);
-                const minutes = Math.floor((secondsRemaining % 3600) / 60);
-                const seconds = secondsRemaining % 60;
-
-                const timeString =
-                    String(hours).padStart(2, "0") + ":" +
-                    String(minutes).padStart(2, "0") + ":" +
-                    String(seconds).padStart(2, "0");
-
-                if (timerSilver) timerSilver.innerText = timeString;
-                if (timerGold) timerGold.innerText = timeString;
-                if (timerDiamond) timerDiamond.innerText = timeString;
-
-                if (typeof updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle === 'undefined') {
-                    updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(animate);
                 } else {
-                    if (secondsInCurrentCycle < updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle) {
-                        const amount = Math.floor(Math.random() * (50000 - 20000 + 1)) + 20000;
-                        updateRevenue(amount);
-                    }
-                    updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+                    animationFrameId = null;
+                    revenueDisplay.innerText = formatRevenue(newRevenue);
+                    displayedRevenue = newRevenue;
                 }
             }
 
-            updateGlobalTimersAndCheckRevenue();
-            setInterval(updateGlobalTimersAndCheckRevenue, 1000);
+            animationFrameId = requestAnimationFrame(animate);
+        }
 
-        });
-    </script>
+        function updateRevenue(amount) {
+            if (amount <= 0) return;
+            const newRevenue = revenue + amount;
+            if (newRevenue > revenue) {
+                revenue = newRevenue;
+                localStorage.setItem(revenueKey, revenue.toString());
+                animateRevenueTo(revenue);
+            }
+        }
+
+        function scheduleBackgroundGrowth() {
+            const interval = Math.random() * (90000 - 30000) + 30000;
+            setTimeout(() => {
+                const amount = Math.floor(Math.random() * (1200 - 200 + 1)) + 200;
+                updateRevenue(amount);
+                scheduleBackgroundGrowth();
+            }, interval);
+        }
+        scheduleBackgroundGrowth();
+
+        function setupUnlockClickGrowth() {
+            const unlockBtns = document.querySelectorAll('.unlock-btn');
+            unlockBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const amount = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+                    updateRevenue(amount);
+                });
+            });
+        }
+        setupUnlockClickGrowth();
+
+        function tryMajorBoost() {
+            const now = Date.now();
+            const intervalMs = majorBoostIntervalHours * 3600 * 1000;
+            if (now - lastMajorBoost >= intervalMs) {
+                const amount = Math.floor(Math.random() * (300000 - 100000 + 1)) + 100000;
+                updateRevenue(amount);
+                lastMajorBoost = now;
+                localStorage.setItem(lastMajorBoostKey, lastMajorBoost.toString());
+            }
+        }
+        tryMajorBoost();
+        setInterval(tryMajorBoost, 3600 * 1000);
+
+        // Global Timer
+        const timerSilver = document.getElementById("timerSilver");
+        const timerGold = document.getElementById("timerGold");
+        const timerDiamond = document.getElementById("timerDiamond");
+
+        function updateGlobalTimersAndCheckRevenue() {
+            const now = new Date();
+            const utcHours = now.getUTCHours();
+            const utcMinutes = now.getUTCMinutes();
+            const utcSeconds = now.getUTCSeconds();
+
+            const currentSecondsSinceMidnight = (utcHours * 3600) + (utcMinutes * 60) + utcSeconds;
+            const cycleLengthSeconds = 8 * 3600;
+
+            const secondsInCurrentCycle = currentSecondsSinceMidnight % cycleLengthSeconds;
+            const secondsRemaining = cycleLengthSeconds - secondsInCurrentCycle;
+
+            const hours = Math.floor(secondsRemaining / 3600);
+            const minutes = Math.floor((secondsRemaining % 3600) / 60);
+            const seconds = secondsRemaining % 60;
+
+            const timeString =
+                String(hours).padStart(2, "0") + ":" +
+                String(minutes).padStart(2, "0") + ":" +
+                String(seconds).padStart(2, "0");
+
+            if (timerSilver) timerSilver.innerText = timeString;
+            if (timerGold) timerGold.innerText = timeString;
+            if (timerDiamond) timerDiamond.innerText = timeString;
+
+            if (typeof updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle === 'undefined') {
+                updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+            } else {
+                if (secondsInCurrentCycle < updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle) {
+                    const amount = Math.floor(Math.random() * (50000 - 20000 + 1)) + 20000;
+                    updateRevenue(amount);
+                }
+                updateGlobalTimersAndCheckRevenue.prevSecondsInCurrentCycle = secondsInCurrentCycle;
+            }
+        }
+
+        updateGlobalTimersAndCheckRevenue();
+        setInterval(updateGlobalTimersAndCheckRevenue, 1000);
+
+    });
+</script>
 </body>
 </html>
