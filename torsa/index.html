@@ -70,13 +70,16 @@
         .delay-3 { animation-delay: 0.3s; }
 
         /* --- Cover Image & Header --- */
-        .cover-banner {
-            height: 180px;
-            width: 100%;
-            background: linear-gradient(135deg, #e0eafc, #cfdef3);
-            position: relative;
-            border-bottom: 1px solid var(--border-color);
-        }
+      .cover-banner {
+    height: 220px; /* slightly taller for better impact */
+    width: 100%;
+    background-image: url("images/banner.jpg");
+    background-size: cover;       /* fills entire banner */
+    background-position: center;  /* keeps image centered */
+    background-repeat: no-repeat;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+}
 
         .header-content {
             padding: 0 16px 20px 16px;
