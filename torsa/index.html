@@ -608,6 +608,22 @@
     50% { box-shadow: 0 0 18px rgba(255,77,109,1); }
     100% { box-shadow: 0 0 8px rgba(255,77,109,0.5); }
 }
+        .status-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.online-status{
+    display:flex;
+    align-items:center;
+}
+
+.giveaway-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
     </style>
 </head>
 <body>
@@ -636,7 +652,7 @@
             </div>
 
             <!-- Online Status -->
-           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+      <div class="status-row">
     <div class="online-status" id="onlineStatus">
         <span class="status-dot"></span>
         <span class="status-text">Online Now</span>
