@@ -552,24 +552,24 @@
             .nav-tabs { gap: 20px; }
         }
         /* Watermark Overlay */
-.watermark-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 2;
-}
+        .watermark-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 2;
+        }
 
-.watermark-text {
-    font-size: 22px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.25);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transform: rotate(-20deg);
-}
+        .watermark-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(-20deg);
+        }
         .verified-badge {
     display: inline-flex;
     align-items: center;
@@ -597,17 +597,52 @@
 }
 /* Right Side Massage Stats */
 
-..header-layout{
-display:flex;
-align-items:flex-start;
-gap:30px;
+.header-layout{
+    display:flex;
+    align-items:flex-start;
+    gap:30px;
+}
+
+/* Massage Stats Block Styling */
+.massage-stats {
+    min-width: 220px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.massage-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.massage-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.massage-item:last-child {
+    border-bottom: none;
+}
+
+.massage-number {
+    font-weight: 700;
+    color: var(--primary-blue);
 }
     
 
 @media(max-width:900px){
-.header-layout{
-flex-direction:column;
-}
+    .header-layout{
+        flex-direction:column;
+    }
 }
 
     </style>
@@ -622,15 +657,15 @@ flex-direction:column;
     <!-- Profile Header -->
     <header class="header-content animate-in">
         <div class="header-layout">
-        <div class="avatar-wrapper">
-            <img src="images/img1.jpg" class="avatar" alt="Torsa Farooqi" />
-            <div class="verified-badge-small">
-                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <div class="avatar-wrapper">
+                <img src="images/img1.jpg" class="avatar" alt="Torsa Farooqi" />
+                <div class="verified-badge-small">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
             </div>
-        </div>
 
-        <div class="profile-info">
-            <div class="name-row">
+            <div class="profile-info">
+                <div class="name-row">
        <h1 class="profile-name">
     Torsa Farooqi
     <span class="verified-badge">✓</span>
@@ -730,6 +765,57 @@ Pure lust in luxury form. 🔥
             </div>
   
 </div>
+
+<!-- Right Side Massage Stats -->
+<div class="massage-stats">
+    <h3 class="massage-title">Sex Experience</h3>
+
+    <div class="massage-item">
+        <span>Blowjob</span>
+        <span class="massage-number" data-base="534">0</span>
+    </div>
+
+    <div class="massage-item">
+        <span>Handjob</span>
+        <span class="massage-number" data-base="672">0</span>
+    </div>
+
+    <div class="massage-item">
+        <span>Hardcore Sex</span>
+        <span class="massage-number" data-base="1520">0</span>
+    </div>
+
+    <div class="massage-item">
+        <span>Rimjob</span>
+        <span class="massage-number" data-base="253">0</span>
+    </div>
+    
+     <div class="massage-item">
+        <span>Cum Swallowing</span>
+        <span class="massage-number" data-base="426">0</span>
+    </div>
+
+     <div class="massage-item">
+        <span>Soft Sex</span>
+        <span class="massage-number" data-base="285">0</span>
+    </div>
+
+     <div class="massage-item">
+        <span>BDSM</span>
+        <span class="massage-number" data-base="76">0</span>
+    </div>
+
+     <div class="massage-item">
+        <span>Other Sex</span>
+        <span class="massage-number" data-base="675">0</span>
+    </div>
+
+    <div class="massage-item">
+        <span>Nasty Kissing</span>
+        <span class="massage-number" data-base="656">0</span>
+    </div>
+</div>
+
         </div>
     </header>
 
