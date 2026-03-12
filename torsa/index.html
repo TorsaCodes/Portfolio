@@ -11,17 +11,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-        /* --- OF Theme Variables --- */
+        /* --- Premium Theme Variables --- */
         :root {
-            --bg-body: #f1f3f5;
+            /* Backgrounds: Deeper, richer tones */
+            --bg-body: #f8f9fc;
             --bg-card: #ffffff;
-            --text-main: #242529;
-            --text-secondary: #85898f;
-            --primary-blue: #00aff0;
-            --primary-blue-hover: #008cc0;
-            --border-color: #e5e8eb;
+            --bg-card-hover: #ffffff;
+            
+            /* Text: Higher contrast for premium feel */
+            --text-main: #1a1a1a;
+            --text-secondary: #767676;
+            
+            /* Primary: Gradient-rich blue */
+            --primary-blue: #0084ff;
+            --primary-blue-hover: #0066d6;
+            --primary-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            
+            /* Borders: Subtle and refined */
+            --border-color: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.1);
+            
+            /* Layout Dimensions */
             --header-height: 60px;
             --tab-height: 50px;
+            
+            /* Shadows: Layered and soft */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 4px 20px rgba(0, 132, 255, 0.25);
         }
 
         * {
@@ -29,39 +47,49 @@
             margin: 0;
             padding: 0;
             scrollbar-width: thin;
-            scrollbar-color: #ccc #f1f3f5;
+            scrollbar-color: #d1d1d1 transparent;
         }
 
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d1d1; border-radius: 10px; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* Subtle radial gradient for a premium atmosphere */
+            background: radial-gradient(circle at 50% 0%, #eef2f6, #f8f9fc 60%);
             color: var(--text-main);
-            line-height: 1.5;
+            line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
             padding-bottom: 40px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
         ul { list-style: none; }
 
         /* --- Container --- */
         .container {
-            max-width: 935px; /* Standard social media width */
-            margin: 0 auto;
+            max-width: 935px;
+            margin: 30px auto;
             background: var(--bg-card);
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            min-height: calc(100vh - 60px);
+            box-shadow: var(--shadow-md);
+            border-radius: 4px; /* Slight radius to the main container */
+            overflow: hidden; /* Ensures children stick to layout */
+            position: relative;
         }
 
         /* --- Animations --- */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-in {
-            animation: fadeIn 0.6s ease-out forwards;
+            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
             opacity: 0;
         }
 
@@ -70,369 +98,460 @@
         .delay-3 { animation-delay: 0.3s; }
 
         /* --- Cover Image & Header --- */
-      .cover-banner {
-    height: 220px; /* slightly taller for better impact */
-    width: 100%;
-    background-image: url("images/banner.jpg");
-    background-size: cover;       /* fills entire banner */
-    background-position: center;  /* keeps image centered */
-    background-repeat: no-repeat;
-    position: relative;
-    border-bottom: 1px solid var(--border-color);
-}
+        .cover-banner {
+            height: 240px;
+            width: 100%;
+            background-image: url("images/banner.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            border-bottom: 1px solid transparent;
+        }
 
         .header-content {
-            padding: 0 16px 20px 16px;
+            padding: 0 32px 24px 32px;
             position: relative;
         }
 
         /* Avatar styling overlapping cover */
         .avatar-wrapper {
-            margin-top: -64px; /* Pull up into cover */
-            margin-bottom: 12px;
+            margin-top: -72px;
+            margin-bottom: 16px;
             display: inline-block;
             position: relative;
         }
 
         .avatar {
-            width: 128px;
-            height: 128px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
+            /* Premium border with shadow */
             border: 4px solid var(--bg-card);
+            box-shadow: var(--shadow-sm);
             object-fit: cover;
-            background-color: #ddd;
+            background-color: #f0f0f0;
         }
 
         .verified-badge-small {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 6px;
+            right: 6px;
             background: var(--primary-blue);
             color: white;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 3px solid var(--bg-card);
+            box-shadow: 0 2px 6px rgba(0, 132, 255, 0.4);
         }
-        .verified-badge-small svg { width: 16px; height: 16px; fill: white; }
+        .verified-badge-small svg { width: 18px; height: 18px; fill: white; }
 
         .profile-info {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .name-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
+            gap: 10px;
+            margin-bottom: 6px;
             flex-wrap: wrap;
         }
 
         h1 {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .username {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 500;
         }
 
         /* --- Stats Row --- */
         .stats-container {
             display: flex;
-            gap: 24px;
-            margin: 12px 0 16px 0;
+            gap: 30px;
+            margin: 16px 0 24px 0;
             flex-wrap: wrap;
         }
 
         .stat-item {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-main);
         }
 
         .stat-item span {
             font-weight: 700;
             color: var(--text-main);
+            letter-spacing: -0.3px;
         }
         
         .stat-label {
             color: var(--text-secondary);
-            margin-left: 2px;
+            margin-left: 4px;
+            font-weight: 400;
         }
 
         /* --- Online Status --- */
         .online-status {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
-            background: #f0f2f5;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-bottom: 12px;
+            background: #f2f4f7;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .status-dot {
             width: 8px; height: 8px;
-            background: #31a24c; /* OF Green */
+            background: #31a24c;
             border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(49, 162, 76, 0.2);
+            animation: pulse 2s infinite;
         }
         
-        .online-status.offline { color: var(--text-secondary); }
-        .online-status.offline .status-dot { background: #ccc; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(49, 162, 76, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(49, 162, 76, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(49, 162, 76, 0); }
+        }
+
+        .online-status.offline { color: var(--text-secondary); background: #f2f4f7; }
+        .online-status.offline .status-dot { background: #b0b3b8; box-shadow: none; animation: none; }
 
         /* --- Bio --- */
         .bio {
             font-size: 15px;
             color: var(--text-main);
             white-space: pre-line;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             max-width: 600px;
+            line-height: 1.7;
+            color: #4a4a4a;
         }
 
         /* --- Mastered Moves (Tags) --- */
         .mastered-moves-section {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         .moves-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
         }
         .move-tag {
-            background: #f1f3f5;
+            background: #f0f2f5;
             color: var(--text-secondary);
-            font-size: 12px;
-            padding: 6px 12px;
-            border-radius: 16px;
-            transition: 0.2s;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: default;
+            font-weight: 500;
+            border: 1px solid transparent;
         }
         .move-tag:hover {
-            background: #e4e6eb;
-            color: var(--text-main);
+            background: white;
+            color: var(--primary-blue);
+            border-color: rgba(0, 132, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
         /* --- Action Buttons --- */
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .btn {
-            padding: 8px 16px;
+            padding: 11px 24px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            letter-spacing: 0.3px;
         }
 
         .btn-subscribe {
-            background-color: var(--primary-blue);
+            background: var(--primary-gradient);
             color: white;
+            box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+            position: relative;
+            overflow: hidden;
         }
-        .btn-subscribe:hover { background-color: var(--primary-blue-hover); }
+        
+        .btn-subscribe:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 132, 255, 0.4);
+        }
 
         .btn-secondary {
-            background-color: #f0f2f5;
+            background-color: white;
             color: var(--text-main);
-            border: 1px solid transparent;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
         }
-        .btn-secondary:hover { background-color: #e4e6eb; }
+        .btn-secondary:hover { 
+            background-color: #fcfcfc;
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
 
         /* --- Sticky Tabs --- */
         .sticky-nav-wrapper {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
         }
 
         .nav-tabs {
-    display: flex;
-    justify-content: center; /* centers the single tab */
-    padding: 0 16px;
-}
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+        }
 
         .nav-tab {
-            padding: 15px 0;
+            padding: 18px 0;
             font-size: 14px;
             font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
             border-bottom: 2px solid transparent;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.2px;
+            transition: 0.3s;
         }
 
         .nav-tab.active {
             color: var(--text-main);
             border-bottom-color: var(--primary-blue);
         }
+        
+        .nav-tab:hover {
+            color: var(--text-main);
+        }
 
         /* --- Membership Tiers (Bundles) --- */
         .tiers-section {
-            padding: 20px 16px;
-            background-color: var(--bg-body);
+            padding: 32px;
+            background-color: #fafbfd;
             border-top: 1px solid var(--border-color);
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
         }
 
         .tiers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
+            gap: 20px;
         }
 
         .tier-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 16px;
-            transition: 0.2s;
+            border-radius: 16px;
+            padding: 24px;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
 
         .tier-card:hover {
-            border-color: #ccc;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
         }
 
         .tier-name {
             font-size: 16px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .countdown {
             font-size: 11px;
-            color: #d93025; /* Red for urgency */
+            color: #e02020; /* Premium Red */
             font-weight: 600;
+            background: rgba(224, 32, 32, 0.08);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .tier-price {
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
-        .tier-price span { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+        .tier-price span { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
 
         .tier-features li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 500;
         }
         .tier-features li::before {
             content: "✓";
             color: var(--primary-blue);
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 16px;
         }
 
         .tier-btn {
             width: 100%;
-            padding: 10px;
-            border-radius: 4px; /* Slightly squarer than social buttons */
+            padding: 12px;
+            border-radius: 10px;
             border: none;
             font-weight: 600;
             cursor: pointer;
-            background-color: var(--primary-blue);
+            background-color: var(--text-main); /* Black button for contrast */
             color: white;
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
         }
-        .tier-btn:hover { background-color: var(--primary-blue-hover); }
+        .tier-btn:hover { 
+            background-color: black;
+            transform: scale(1.02);
+        }
 
-        /* Specific Tier Accents */
-        .tier-card.gold { border-top: 3px solid #d4af37; }
-        .tier-card.silver { border-top: 3px solid #c0c0c0; }
-        .tier-card.diamond { border-top: 3px solid #8fd3ff; }
+        /* Metallic Premium Gradients for Tiers */
+        .tier-card.silver { 
+            border-top: 4px solid #C0C0C0; 
+            background: linear-gradient(to bottom, #ffffff, #f9fafb);
+        }
+        .tier-card.gold { 
+            border-top: 4px solid #D4AF37;
+            background: linear-gradient(to bottom, #fffcf5, #fffef9);
+        }
+        .tier-card.diamond { 
+            border-top: 4px solid #b9f2ff; 
+            background: linear-gradient(to bottom, #f0fbff, #ffffff);
+        }
 
         /* --- Posts Grid (Media Tab Style) --- */
         .grid-section { 
-            padding: 20px 16px; 
-            background-color: var(--bg-body);
+            padding: 32px; 
+            background-color: var(--bg-card);
             border-top: 1px solid var(--border-color);
         }
 
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* OF Media Grid is usually 3 or 4 cols */
-            gap: 4px; /* Tight gap like OF */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px; /* Increased gap for breathing room */
         }
 
         .post-card {
             position: relative;
             aspect-ratio: 4/5;
-            background-color: #e4e6eb;
+            background-color: #f0f2f5;
             overflow: hidden;
             cursor: pointer;
+            border-radius: 12px; /* Rounded corners for cards */
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+        }
+        
+        .post-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: scale(1.01);
         }
 
         .post-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.3s;
+            transition: 0.5s ease;
         }
 
         /* Lock Overlay Style */
         .post-card:hover .post-image {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: blur(10px);
         }
 
         .lock-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(255, 255, 255, 0.85); /* Light overlay */
-            backdrop-filter: blur(4px);
+            /* Glassmorphism overlay */
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .post-card:hover .lock-overlay {
+            opacity: 1;
         }
 
         .lock-icon {
-            width: 24px; height: 24px;
+            width: 32px; height: 32px;
             fill: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .locked-text {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--primary-blue);
-            line-height: 1.3;
+            letter-spacing: 0.5px;
         }
-
+        
         .caption-preview {
-            display: none; /* Hide captions in grid view for cleaner OF look, or show on hover */
+            display: none;
         }
         
         .post-card:hover .caption-preview {
@@ -441,117 +560,21 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(0,0,0,0.6);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
-            font-size: 11px;
-            padding: 8px;
+            font-size: 12px;
+            padding: 20px 12px 12px;
+            z-index: 5;
+            font-weight: 500;
         }
 
         /* Blur Protection */
         .post-image.protected {
-            filter: blur(15px);
-            transform: scale(1.1);
-        }
-        .post-card:hover .post-image.protected {
-            filter: blur(12px);
+            filter: blur(20px);
+            transform: scale(1.05);
         }
 
-        /* --- Modal --- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.2s;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .modal-box {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transform: scale(0.95);
-            transition: 0.2s;
-        }
-        .modal-overlay.active .modal-box { transform: scale(1); }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .close-modal {
-            background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-secondary);
-        }
-
-        .msg-textarea {
-            width: 100%;
-            height: 100px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px;
-            font-family: inherit;
-            resize: none;
-            margin-bottom: 15px;
-            background: #f9f9f9;
-        }
-        .msg-textarea:focus { outline: 2px solid var(--primary-blue); border-color: transparent; }
-
-        /* --- Toast Notification --- */
-        .activity-toast {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 900;
-            max-width: 300px;
-        }
-        .activity-toast.show { transform: translateY(0); opacity: 1; }
-        
-        .toast-avatar {
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            background: #eee;
-            object-fit: cover;
-        }
-
-        .activity-content { font-size: 13px; }
-        .activity-text { font-weight: 600; color: var(--text-main); }
-        .activity-time { color: var(--text-secondary); font-size: 12px; }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .container { box-shadow: none; }
-            .posts-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .posts-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
-            .cover-banner { height: 120px; }
-            .avatar { width: 100px; height: 100px; }
-            .avatar-wrapper { margin-top: -50px; }
-            .btn { width: 100%; margin-bottom: 8px; }
-            .nav-tabs { gap: 20px; }
-        }
-        /* Watermark Overlay */
+        /* --- Watermark --- */
         .watermark-overlay {
             position: absolute;
             inset: 0;
@@ -563,88 +586,205 @@
         }
 
         .watermark-text {
-            font-size: 22px;
-            font-weight: 700;
-            color: rgba(255,255,255,0.25);
+            font-size: 28px;
+            font-weight: 800;
+            color: rgba(0,0,0,0.08); /* Subtle watermark */
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transform: rotate(-20deg);
+            letter-spacing: 4px;
+            transform: rotate(-25deg);
+            user-select: none;
         }
+
+        /* --- Badges --- */
         .verified-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    margin-left: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    background: #1DA1F2; /* Blue color */
-    border-radius: 50%;
-    vertical-align: middle;
-}
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-left: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            color: white;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            vertical-align: middle;
+        }
 
-        .status-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.online-status{
-    display:flex;
-    align-items:center;
-}
-/* Right Side Massage Stats */
+        .header-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
 
-.header-layout{
-    display:flex;
-    align-items:flex-start;
-    gap:30px;
-}
+        /* Massage Stats Block Styling - Premium Card Look */
+        .massage-stats {
+            min-width: 240px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
 
-/* Massage Stats Block Styling */
-.massage-stats {
-    min-width: 220px;
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
+        .massage-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
 
-.massage-title {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--text-main);
-}
+        .massage-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .massage-item:last-child { border-bottom: none; }
 
-.massage-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    padding: 6px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
+        .massage-number {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 15px;
+        }
 
-.massage-item:last-child {
-    border-bottom: none;
-}
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
-.massage-number {
-    font-weight: 700;
-    color: var(--primary-blue);
-}
-    
+        .modal-box {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.95) translateY(10px);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-overlay.active .modal-box { transform: scale(1) translateY(0); }
 
-@media(max-width:900px){
-    .header-layout{
-        flex-direction:column;
-    }
-}
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 { font-size: 18px; font-weight: 700; }
+        .close-modal {
+            background: #f0f2f5; border: none; 
+            width: 30px; height: 30px; border-radius: 50%;
+            font-size: 18px; cursor: pointer; 
+            color: var(--text-secondary);
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+        }
+        .close-modal:hover { background: #e4e6eb; color: var(--text-main); }
 
+        .msg-textarea {
+            width: 100%;
+            height: 120px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: none;
+            margin-bottom: 20px;
+            background: #fcfcfc;
+            transition: 0.2s;
+        }
+        .msg-textarea:focus { 
+            outline: none; 
+            border-color: var(--primary-blue); 
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.1);
+        }
+
+        /* --- Toast Notification --- */
+        .activity-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 900;
+            max-width: 320px;
+        }
+        .activity-toast.show { transform: translateY(0); opacity: 1; }
+        
+        .toast-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #eee;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .activity-content { font-size: 13px; }
+        .activity-text { font-weight: 600; color: var(--text-main); margin-bottom: 2px;}
+        .activity-time { color: var(--text-secondary); font-size: 12px; }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .header-layout { flex-direction: column; gap: 24px; }
+            .massage-stats { width: 100%; min-width: auto; }
+        }
+
+        @media (max-width: 768px) {
+            .container { box-shadow: none; margin: 0; border-radius: 0; }
+            .posts-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .header-content { padding: 0 20px 20px; }
+            .tiers-section { padding: 20px; }
+            .grid-section { padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .posts-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+            .cover-banner { height: 140px; }
+            .avatar { width: 110px; height: 110px; }
+            .avatar-wrapper { margin-top: -55px; }
+            .btn { width: 100%; margin-bottom: 8px; }
+            .nav-tabs { gap: 20px; }
+            .tier-card { padding: 20px; }
+            .massage-item { padding: 8px 0; }
+        }
     </style>
 </head>
 <body>
@@ -666,34 +806,34 @@
 
             <div class="profile-info">
                 <div class="name-row">
-       <h1 class="profile-name">
-    Torsa Farooqi
-    <span class="verified-badge">✓</span>
-</h1>
-                <span class="username">@torsa.sucks.slowly</span>
-            </div>
+                    <h1 class="profile-name">
+                        Torsa Farooqi
+                        <span class="verified-badge">✓</span>
+                    </h1>
+                    <span class="username">@torsa.sucks.slowly</span>
+                </div>
             
 
-            <!-- Online Status -->
-      <div class="status-row">
-    <div class="online-status" id="onlineStatus">
-        <span class="status-dot"></span>
-        <span class="status-text">Online Now</span>
-    </div>
-</div>
+                <!-- Online Status -->
+                <div class="status-row">
+                    <div class="online-status" id="onlineStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Online Now</span>
+                    </div>
+                </div>
    
 
-            <!-- Stats -->
-            <div class="stats-container delay-1 animate-in">
-                <div class="stat-item"><span data-target="358">0</span> <span class="stat-label">posts</span></div>
-                <div class="stat-item"><span data-target="264000">0</span> <span class="stat-label">followers</span></div>
-                <div class="stat-item"><span data-target="244">0</span> <span class="stat-label">media</span></div>
-                <div class="stat-item" style="color:var(--text-secondary); font-size:13px; display:flex; align-items:center;">
-                    💰 <span id="revenueCounter" style="font-size:14px; font-weight:700; margin-left:5px;">$0</span> 
+                <!-- Stats -->
+                <div class="stats-container delay-1 animate-in">
+                    <div class="stat-item"><span data-target="358">0</span> <span class="stat-label">posts</span></div>
+                    <div class="stat-item"><span data-target="264000">0</span> <span class="stat-label">followers</span></div>
+                    <div class="stat-item"><span data-target="244">0</span> <span class="stat-label">media</span></div>
+                    <div class="stat-item" style="color:var(--text-secondary); font-size:13px; display:flex; align-items:center;">
+                        💰 <span id="revenueCounter" style="font-size:15px; font-weight:700; margin-left:6px;">$0</span> 
+                    </div>
                 </div>
-            </div>
 
-            <p class="bio delay-2 animate-in">
+                <p class="bio delay-2 animate-in">
 Full-time on cam at Kink.com and I love being watched.
 
 Salpingectomy done. No fear. No limits. Just heat and hunger.
@@ -706,128 +846,125 @@ Always turned on. Always pushing boundaries.
 
 Not innocent. Not subtle.
 Pure lust in luxury form. 🔥
-            </p>
+                </p>
 
-            <!-- Mastered Moves -->
-            <section class="mastered-moves-section" id="masteredMoves">
-                <div class="moves-grid">
-                   <span class="move-tag">Anal</span>
-                    <span class="move-tag">BDSM</span>
-                    <span class="move-tag">Blowjob</span>
-                    <span class="move-tag">Bondage</span>
-                    <span class="move-tag">Deepthroat</span>
-                    <span class="move-tag">Doggy Style</span>
-                    <span class="move-tag">Domination</span>
-                    <span class="move-tag">Group</span>
-                    <span class="move-tag">Hardcore</span>
-                    <span class="move-tag">Role-Playing</span>
-                    <span class="move-tag">Psychology</span>
-                    <span class="move-tag">Missionary</span>
-                    <span class="move-tag">Cowgirl</span>
-                    <span class="move-tag">Reverse Cowgirl</span>
-                    <span class="move-tag">Spooning</span>
-                    <span class="move-tag">Lotus</span>
-                    <span class="move-tag">Standing</span>
-                    <span class="move-tag">Face-to-Face Sitting</span>
-                    <span class="move-tag">Lap Dance Position</span>
-                    <span class="move-tag">Butterfly</span>
-                    <span class="move-tag">Side-by-Side</span>
-                    <span class="move-tag">Flatiron</span>
-                    <span class="move-tag">The Bridge</span>
-                    <span class="move-tag">The Chair</span>
-                    <span class="move-tag">The Scoop</span>
-                    <span class="move-tag">The Pretzel</span>
-                    <span class="move-tag">The Cross</span>
-                    <span class="move-tag">The T-Position</span>
-                    <span class="move-tag">The Amazon</span>
-                    <span class="move-tag">The Deck Chair</span>
-                    <span class="move-tag">The Y-Position</span>
-                    <span class="move-tag">The Crab</span>
-                    <span class="move-tag">The Lazy Dog</span>
-                    <span class="move-tag">The Spider</span>
-                    <span class="move-tag">The Pillow Lift</span>
-                    <span class="move-tag">And Many More</span>
+                <!-- Mastered Moves -->
+                <section class="mastered-moves-section" id="masteredMoves">
+                    <div class="moves-grid">
+                        <span class="move-tag">Anal</span>
+                        <span class="move-tag">BDSM</span>
+                        <span class="move-tag">Blowjob</span>
+                        <span class="move-tag">Bondage</span>
+                        <span class="move-tag">Deepthroat</span>
+                        <span class="move-tag">Doggy Style</span>
+                        <span class="move-tag">Domination</span>
+                        <span class="move-tag">Group</span>
+                        <span class="move-tag">Hardcore</span>
+                        <span class="move-tag">Role-Playing</span>
+                        <span class="move-tag">Psychology</span>
+                        <span class="move-tag">Missionary</span>
+                        <span class="move-tag">Cowgirl</span>
+                        <span class="move-tag">Reverse Cowgirl</span>
+                        <span class="move-tag">Spooning</span>
+                        <span class="move-tag">Lotus</span>
+                        <span class="move-tag">Standing</span>
+                        <span class="move-tag">Face-to-Face Sitting</span>
+                        <span class="move-tag">Lap Dance Position</span>
+                        <span class="move-tag">Butterfly</span>
+                        <span class="move-tag">Side-by-Side</span>
+                        <span class="move-tag">Flatiron</span>
+                        <span class="move-tag">The Bridge</span>
+                        <span class="move-tag">The Chair</span>
+                        <span class="move-tag">The Scoop</span>
+                        <span class="move-tag">The Pretzel</span>
+                        <span class="move-tag">The Cross</span>
+                        <span class="move-tag">The T-Position</span>
+                        <span class="move-tag">The Amazon</span>
+                        <span class="move-tag">The Deck Chair</span>
+                        <span class="move-tag">The Y-Position</span>
+                        <span class="move-tag">The Crab</span>
+                        <span class="move-tag">The Lazy Dog</span>
+                        <span class="move-tag">The Spider</span>
+                        <span class="move-tag">The Pillow Lift</span>
+                        <span class="move-tag">And Many More</span>
+                    </div>
+                </section>
 
+                <!-- Action Buttons -->
+                <div class="button-group delay-3 animate-in">
+                    <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="btn btn-subscribe">
+                        SUBSCRIBE
+                    </a>
+                    <button class="btn btn-secondary" id="openMsgBtn">
+                        Message
+                    </button>
+                    <a href="https://www.instagram.com/torsa.sucks.slowly/" target="_blank" class="btn btn-secondary" style="padding: 11px 16px;">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
                 </div>
-            </section>
-
-            <!-- Action Buttons -->
-            <div class="button-group delay-3 animate-in">
-                <a href="https://form.typeform.com/to/IhDQzITL" target="_blank" class="btn btn-subscribe">
-                    SUBSCRIBE
-                </a>
-                <button class="btn btn-secondary" id="openMsgBtn">
-                    Message
-                </button>
-                <a href="https://www.instagram.com/torsa.sucks.slowly/" target="_blank" class="btn btn-secondary" style="padding: 8px;">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-            </div>
   
-</div>
+            </div>
 
-<!-- Right Side Massage Stats -->
-<div class="massage-stats">
-    <h3 class="massage-title">Sex Experience</h3>
+            <!-- Right Side Massage Stats -->
+            <div class="massage-stats">
+                <h3 class="massage-title">Sex Experience</h3>
 
-    <div class="massage-item">
-        <span>Blowjob</span>
-        <span class="massage-number" data-base="534">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Blowjob</span>
+                    <span class="massage-number" data-base="534">0</span>
+                </div>
 
-    <div class="massage-item">
-        <span>Handjob</span>
-        <span class="massage-number" data-base="672">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Handjob</span>
+                    <span class="massage-number" data-base="672">0</span>
+                </div>
 
-    <div class="massage-item">
-        <span>Hardcore Sex</span>
-        <span class="massage-number" data-base="568">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Hardcore Sex</span>
+                    <span class="massage-number" data-base="568">0</span>
+                </div>
 
-    <div class="massage-item">
-        <span>Rimjob</span>
-        <span class="massage-number" data-base="253">0</span>
-    </div>
-    
-     <div class="massage-item">
-        <span>Cum Swallowing</span>
-        <span class="massage-number" data-base="426">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Rimjob</span>
+                    <span class="massage-number" data-base="253">0</span>
+                </div>
+                
+                <div class="massage-item">
+                    <span>Cum Swallowing</span>
+                    <span class="massage-number" data-base="426">0</span>
+                </div>
 
-     <div class="massage-item">
-        <span>Soft Sex</span>
-        <span class="massage-number" data-base="285">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Soft Sex</span>
+                    <span class="massage-number" data-base="285">0</span>
+                </div>
 
-     <div class="massage-item">
-        <span>BDSM</span>
-        <span class="massage-number" data-base="76">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>BDSM</span>
+                    <span class="massage-number" data-base="76">0</span>
+                </div>
 
-     <div class="massage-item">
-        <span>Other Sex</span>
-        <span class="massage-number" data-base="675">0</span>
-    </div>
+                <div class="massage-item">
+                    <span>Other Sex</span>
+                    <span class="massage-number" data-base="675">0</span>
+                </div>
 
-    <div class="massage-item">
-        <span>Nasty Kissing</span>
-        <span class="massage-number" data-base="656">0</span>
-    </div>
-</div>
-
+                <div class="massage-item">
+                    <span>Nasty Kissing</span>
+                    <span class="massage-number" data-base="656">0</span>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Sticky Navigation Tabs -->
     <nav class="sticky-nav-wrapper">
-    <div class="container" style="background: transparent; box-shadow: none; min-height: auto;">
-        <div class="nav-tabs">
-            <div class="nav-tab active">Posts</div>
+        <div class="container" style="background: transparent; box-shadow: none; min-height: auto;">
+            <div class="nav-tabs">
+                <div class="nav-tab active">Posts</div>
+            </div>
         </div>
-        
-    </div>
-</nav>
+    </nav>
 
     <!-- Membership Tiers Section -->
     <section class="tiers-section animate-in delay-2">
@@ -873,108 +1010,106 @@ Pure lust in luxury form. 🔥
     </section>
 
     <!-- Protected Content Grid -->
-   <!-- Protected Content Grid -->
-<section class="grid-section animate-in delay-3">
-    <h2 class="section-title">Recent Post (Subscribe To Unlock)</h2>
+    <section class="grid-section animate-in delay-3">
+        <h2 class="section-title">Recent Post (Subscribe To Unlock)</h2>
 
-    <div class="posts-grid">
+        <div class="posts-grid">
 
-        <!-- Post Template (x6) -->
-        <!-- Post 1 -->
-        <div class="post-card">
-            <div class="caption-preview">Premium locked content</div>
+            <!-- Post 1 -->
+            <div class="post-card">
+                <div class="caption-preview">Premium locked content</div>
 
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+
+                <img data-src="images/post1.jpg" class="post-image protected" alt="Locked Post" />
             </div>
 
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
+            <!-- Post 2 -->
+            <div class="post-card">
+                <div class="caption-preview">Exclusive content preview</div>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+                <img data-src="images/post2.jpg" class="post-image protected" alt="Locked Post" />
             </div>
 
-            <img data-src="images/post1.jpg" class="post-image protected" alt="Locked Post" />
+            <!-- Post 3 -->
+            <div class="post-card">
+                <div class="caption-preview">Members only</div>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+                <img data-src="images/post3.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 4 -->
+            <div class="post-card">
+                <div class="caption-preview">Premium gallery</div>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+                <img data-src="images/post4.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 5 -->
+            <div class="post-card">
+                <div class="caption-preview">VIP content</div>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+                <img data-src="images/post5.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
+            <!-- Post 6 -->
+            <div class="post-card">
+                <div class="caption-preview">Exclusive drop</div>
+                <div class="watermark-overlay">
+                    <span class="watermark-text">Torsa Farooqi</span>
+                </div>
+                <div class="lock-overlay">
+                    <svg class="lock-icon" viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
+                    </svg>
+                    <span class="locked-text">Subscribe to unlock</span>
+                </div>
+                <img data-src="images/post6.jpg" class="post-image protected" alt="Locked Post" />
+            </div>
+
         </div>
-
-        <!-- Post 2 -->
-        <div class="post-card">
-            <div class="caption-preview">Exclusive content preview</div>
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
-            </div>
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
-            </div>
-            <img data-src="images/post2.jpg" class="post-image protected" alt="Locked Post" />
-        </div>
-
-        <!-- Post 3 -->
-        <div class="post-card">
-            <div class="caption-preview">Members only</div>
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
-            </div>
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
-            </div>
-            <img data-src="images/post3.jpg" class="post-image protected" alt="Locked Post" />
-        </div>
-
-        <!-- Post 4 -->
-        <div class="post-card">
-            <div class="caption-preview">Premium gallery</div>
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
-            </div>
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
-            </div>
-            <img data-src="images/post4.jpg" class="post-image protected" alt="Locked Post" />
-        </div>
-
-        <!-- Post 5 -->
-        <div class="post-card">
-            <div class="caption-preview">VIP content</div>
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
-            </div>
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
-            </div>
-            <img data-src="images/post5.jpg" class="post-image protected" alt="Locked Post" />
-        </div>
-
-        <!-- Post 6 -->
-        <div class="post-card">
-            <div class="caption-preview">Exclusive drop</div>
-            <div class="watermark-overlay">
-                <span class="watermark-text">Torsa Farooqi</span>
-            </div>
-            <div class="lock-overlay">
-                <svg class="lock-icon" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6a5 5 0 00-10 0v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V10a2 2 0 00-2-2zm-6 9a2 2 0 110-4 2 2 0 010 4zm3-9H9V6a3 3 0 016 0v2z"/>
-                </svg>
-                <span class="locked-text">Subscribe to unlock</span>
-            </div>
-            <img data-src="images/post6.jpg" class="post-image protected" alt="Locked Post" />
-        </div>
-
-    </div>
-</section>
+    </section>
 </div>
 
 <!-- Private Message Modal -->
@@ -1021,7 +1156,7 @@ Pure lust in luxury form. 🔥
                     }
                 } else {
                     // Placeholder
-                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500"%3E%3Crect fill="%23e4e6eb" width="400" height="500"/%3E%3C/svg%3E';
+                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500"%3E%3Crect fill="%23f0f2f5" width="400" height="500"/%3E%3C/svg%3E';
                 }
             });
 
@@ -1175,119 +1310,114 @@ Pure lust in luxury form. 🔥
         setInterval(showNotification, 10000); 
         
         // Revenue System (Preserved Logic)
-     const revenueKey = "lifetimeRevenue";
-const lastMajorBoostKey = "lastMajorBoost";
-const majorBoostIntervalHours = 24;
+        const revenueKey = "lifetimeRevenue";
+        const lastMajorBoostKey = "lastMajorBoost";
+        const majorBoostIntervalHours = 24;
 
-const baseRevenueInitial = 78153590;
+        const baseRevenueInitial = 78153590;
 
-// Start date for daily growth
-const revenueStartDate = new Date("2026-01-01").getTime();
+        // Start date for daily growth
+        const revenueStartDate = new Date("2026-01-01").getTime();
 
-const today = Date.now();
-const daysPassed = Math.floor((today - revenueStartDate) / (1000 * 60 * 60 * 24));
+        const today = Date.now();
+        const daysPassed = Math.floor((today - revenueStartDate) / (1000 * 60 * 60 * 24));
 
-const revenueDisplay = document.getElementById("revenueCounter");
+        const revenueDisplay = document.getElementById("revenueCounter");
 
-// Load revenue
-let revenue = localStorage.getItem(revenueKey);
+        // Load revenue
+        let revenue = localStorage.getItem(revenueKey);
 
-if (revenue === null || isNaN(parseInt(revenue))) {
-    revenue = baseRevenueInitial;
-} else {
-    revenue = parseInt(revenue);
-}
+        if (revenue === null || isNaN(parseInt(revenue))) {
+            revenue = baseRevenueInitial;
+        } else {
+            revenue = parseInt(revenue);
+        }
 
-// +1000 DAILY GROWTH
-const expectedRevenue = baseRevenueInitial + (daysPassed * 1000);
+        // +1000 DAILY GROWTH
+        const expectedRevenue = baseRevenueInitial + (daysPassed * 1000);
 
-if (revenue < expectedRevenue) {
-    revenue = expectedRevenue;
-}
+        if (revenue < expectedRevenue) {
+            revenue = expectedRevenue;
+        }
 
-// Save revenue
-localStorage.setItem(revenueKey, revenue.toString());
+        // Save revenue
+        localStorage.setItem(revenueKey, revenue.toString());
 
-// Format display
-function formatRevenue(num) {
-    return "$" + num.toLocaleString();
-}
+        // Format display
+        function formatRevenue(num) {
+            return "$" + num.toLocaleString();
+        }
 
-function updateRevenueDisplay() {
-    revenueDisplay.textContent = formatRevenue(revenue);
-}
+        function updateRevenueDisplay() {
+            revenueDisplay.textContent = formatRevenue(revenue);
+        }
 
-function updateRevenue(amount) {
-    revenue += amount;
-    localStorage.setItem(revenueKey, revenue.toString());
-    updateRevenueDisplay();
-}
+        function updateRevenue(amount) {
+            revenue += amount;
+            localStorage.setItem(revenueKey, revenue.toString());
+            updateRevenueDisplay();
+        }
 
-// Random background growth
-function randomGrowth() {
-    const amount = Math.floor(Math.random() * (1200 - 200 + 1)) + 200;
-    updateRevenue(amount);
+        // Random background growth
+        function randomGrowth() {
+            const amount = Math.floor(Math.random() * (1200 - 200 + 1)) + 200;
+            updateRevenue(amount);
 
-    const nextTime = Math.floor(Math.random() * (90000 - 30000 + 1)) + 30000;
+            const nextTime = Math.floor(Math.random() * (90000 - 30000 + 1)) + 30000;
 
-    setTimeout(randomGrowth, nextTime);
-}
+            setTimeout(randomGrowth, nextTime);
+        }
 
-// Click boost
-function triggerRevenueBoost() {
-    const amount = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
-    updateRevenue(amount);
-}
+        // Click boost
+        function triggerRevenueBoost() {
+            const amount = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+            updateRevenue(amount);
+        }
 
-// Major boost every 24h
-function checkMajorBoost() {
+        // Major boost every 24h
+        function checkMajorBoost() {
 
-    const lastBoost = localStorage.getItem(lastMajorBoostKey);
-    const now = Date.now();
+            const lastBoost = localStorage.getItem(lastMajorBoostKey);
+            const now = Date.now();
 
-    if (!lastBoost) {
-        localStorage.setItem(lastMajorBoostKey, now.toString());
-        return;
-    }
+            if (!lastBoost) {
+                localStorage.setItem(lastMajorBoostKey, now.toString());
+                return;
+            }
 
-    const hoursPassed = (now - parseInt(lastBoost)) / (1000 * 60 * 60);
+            const hoursPassed = (now - parseInt(lastBoost)) / (1000 * 60 * 60);
 
-    if (hoursPassed >= majorBoostIntervalHours) {
+            if (hoursPassed >= majorBoostIntervalHours) {
 
-        const amount = Math.floor(Math.random() * (300000 - 100000 + 1)) + 100000;
+                const amount = Math.floor(Math.random() * (300000 - 100000 + 1)) + 100000;
 
-        updateRevenue(amount);
+                updateRevenue(amount);
 
-        localStorage.setItem(lastMajorBoostKey, now.toString());
-    }
-}
+                localStorage.setItem(lastMajorBoostKey, now.toString());
+            }
+        }
 
-updateRevenueDisplay();
-randomGrowth();
+        updateRevenueDisplay();
+        randomGrowth();
 
-setInterval(checkMajorBoost, 60000);
+        setInterval(checkMajorBoost, 60000);
+        
         function initMassageCounters(){
+            const counters = document.querySelectorAll(".massage-number");
 
-const counters = document.querySelectorAll(".massage-number");
+            const startDate = new Date("2026-01-01").getTime();
+            const today = Date.now();
 
-const startDate = new Date("2026-01-01").getTime();
-const today = Date.now();
+            const daysPassed = Math.floor((today - startDate) / (1000*60*60*24));
 
-const daysPassed = Math.floor((today - startDate) / (1000*60*60*24));
+            counters.forEach(counter=>{
+                const base = parseInt(counter.dataset.base);
+                const total = base + (daysPassed * 2);
+                counter.innerText = total.toLocaleString();
+            });
+        }
 
-counters.forEach(counter=>{
-
-const base = parseInt(counter.dataset.base);
-
-const total = base + (daysPassed * 2);
-
-counter.innerText = total.toLocaleString();
-
-});
-
-}
-
-initMassageCounters();
+        initMassageCounters();
 
     });
 </script>
